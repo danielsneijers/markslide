@@ -7,6 +7,11 @@ It's pretty hard to figure out where to start, but we've got a parser now which 
 ---
 Adding another sheet with only copy
 
-___
+---
 ### And now one with a h3 heading
 - And some bullet points yeah
+
+---
+```javascript
+console.log('Hello World!')
+```
