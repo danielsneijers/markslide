@@ -12,6 +12,10 @@ module.exports = {
       exclude: /node-modules/
     },
     {
+      test: /\.md/,
+      use: 'raw-loader'
+    },
+    {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
         use: [
