@@ -1,0 +1,26 @@
+{
+  "name": "presenter",
+  "version": "1.0.0",
+  "description": "Create simple presentations in markdown",
+  "main": "index.js",
+  "author": "Daniel Sneijers <daniel.sneijers@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "lint": "yarn run lint:js",
+    "lint:js": "eslint ./"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "marked": "^0.3.6"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.11.0"
+  }
+}
