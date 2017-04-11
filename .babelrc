@@ -2,5 +2,16 @@
   "presets": [
     "env",
     "react"
-  ]
+  ],
+  "plugins": [
+    "react-hot-loader/babel"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        ["env", {"modules": false}],
+        "react"
+      ]
+    }
+  }
 }
