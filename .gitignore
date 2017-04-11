@@ -1,6 +1,6 @@
 .idea
 .DS_Store
-build
+dist
 coverage
 node_modules
 npm-debug.log
