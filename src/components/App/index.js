@@ -3,17 +3,16 @@ import PropTypes from 'prop-types'
 // import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import CSS from './style.css'
 
-const App = ({ content }) => {
+const App = ({ children }) => {
   return (
     <div className={CSS.wrapper}>
-      body
-      {content}
+      App
     </div>
   )
 }
 
 App.propTypes = {
-  content: PropTypes.array
+  children: PropTypes.array
 }
 
 export default App

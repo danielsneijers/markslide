@@ -21,10 +21,10 @@ const sheetsPath = path.resolve(__dirname, '../sheets.md')
 const sheetsContent = fs.readFileSync(sheetsPath, 'utf8')
 const sheets = parse(sheetsContent)
 
-const curriedRender = (content) => (req, res) => render.default(req, res, content)
+const curriedRender = (content) => (req, res, props) => render.default(req, res, content)
 const renderWithSheets = curriedRender(sheets)
 
-app.get('/', renderWithSheets)
+app.get('*', renderWithSheets)
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')
