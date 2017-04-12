@@ -2,8 +2,35 @@
   height: 100vh;
   width: 100vw;
   background-color: #fafafa;
-  padding: 1em;
+  padding: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+:global .slide-appear {
+  opacity: 0.01;
+}
+
+:global .slide-appear.slide-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+:global .slide-enter {
+  opacity: 0.01;
+}
+
+:global .slide-enter.slide-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+:global .slide-leave {
+  opacity: 1;
+}
+
+:global .slide-leave.slide-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

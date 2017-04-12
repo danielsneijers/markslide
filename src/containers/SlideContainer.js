@@ -21,9 +21,11 @@ class SlideContainer extends PureComponent {
 
     switch (e.keyCode) {
       case KEY_CODES.LEFT:
+      case KEY_CODES.UP:
         currentIndex > 1 && this.props.navigateTo(`/${currentIndex - 1}`)
         break
       case KEY_CODES.RIGHT:
+      case KEY_CODES.DOWN:
         currentIndex < totalSlides && this.props.navigateTo(`/${currentIndex + 1}`)
         break
       case KEY_CODES.F:
@@ -56,7 +58,7 @@ class SlideContainer extends PureComponent {
 
     return (
       <div ref={(c) => { this.container = c }}>
-        <Slide content={parsedMarkdown[slideIndex]} />
+        <Slide key={`slide-${slideIndex}`} content={parsedMarkdown[slideIndex]} />
       </div>
     )
   }
