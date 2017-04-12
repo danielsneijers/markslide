@@ -18,7 +18,8 @@ module.exports = {
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/',
+    historyApiFallback: true
   },
   module: {
     loaders: [

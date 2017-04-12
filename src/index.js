@@ -19,7 +19,6 @@ render(Routes)
 
 if (module.hot) {
   module.hot.accept('./routes', () => {
-    let nextRoutes = require('./routes')
-    render(nextRoutes)
+    render(Routes)
   })
 }
