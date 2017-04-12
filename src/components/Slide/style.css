@@ -1,3 +1,4 @@
 .item {
-  background-color: yellow;
+  display: block;
+  list-style: none;
 }

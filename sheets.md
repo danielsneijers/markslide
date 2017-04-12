@@ -12,6 +12,8 @@ Adding another sheet with only copy
 - And some bullet points yeah
 
 ---
+## Code example!
+Here's some code, enjoy
 ```javascript
 console.log('Hello World!')
 ```

@@ -2,13 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CSS from './style.css'
 
-const Slide = ({ index }) => {
-  console.log(index)
-  return <li className={CSS.item}>slides</li>
+const Slide = ({ content }) => {
+  return <li
+    className={CSS.item}
+    dangerouslySetInnerHTML={{ __html: content }}
+  />
 }
 
 Slide.propTypes = {
-  index: PropTypes.number
+  content: PropTypes.node
 }
 
 export default Slide
