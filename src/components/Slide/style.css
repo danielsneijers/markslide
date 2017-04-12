@@ -1,4 +1,9 @@
-.item {
-  display: block;
-  list-style: none;
+.slide {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fafafa;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

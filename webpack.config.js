@@ -63,6 +63,9 @@ module.exports = {
     modules: [
       'node_modules',
       resolve(__dirname, './src')
-    ]
+    ],
+    alias: {
+      constants$: resolve(__dirname, 'src/constants/index.js')
+    }
   }
 }
