@@ -37,11 +37,18 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
+            loader: 'style-loader'
+          },
+          {
             loader: 'css-loader',
             query: {
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              modules: true
+              localIdentName: '[local]__[hash:base64:5]',
+              modules: true,
+              sourceMap: true
             }
+          },
+          {
+            loader: 'postcss-loader'
           }
         ]
       }
@@ -50,5 +57,12 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
-  ]
+  ],
+  resolve: {
+    extensions: ['.js'],
+    modules: [
+      'node_modules',
+      resolve(__dirname, './src')
+    ]
+  }
 }

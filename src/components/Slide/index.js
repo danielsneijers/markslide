@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import CSS from './style.css'
 
-const Slide = ({ match }) => {
-  console.log(match)
-  return <li>slide</li>
+const Slide = ({ index }) => {
+  console.log(index)
+  return <li className={CSS.item}>slides</li>
 }
 
 Slide.propTypes = {
-  match: PropTypes.object
+  index: PropTypes.number
 }
 
 export default Slide

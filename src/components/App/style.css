@@ -1,3 +1,9 @@
+@import "./reset.css";
+@import "./typography.css";
+
 .wrapper {
-  background-color: red;
+  height: 100vh;
+  width: 100%;
+  background-color: #fafafa;
+  padding: 1em;
 }

@@ -1,15 +1,26 @@
 {
-  "presets": [
-    "env",
-    "react"
-  ],
-  "plugins": [
-    "react-hot-loader/babel"
-  ],
   "env": {
     "development": {
       "presets": [
-        ["env", {"modules": false}],
+        [
+          "env", {
+            "modules": false,
+            "targets": { "browsers": ["last 2 versions", "> 5%"] }
+          }
+        ],
+        "react"
+      ],
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env", {
+            "targets": { "browsers": ["last 2 versions", "> 5%"] }
+          }
+        ],
         "react"
       ]
     }
