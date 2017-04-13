@@ -19,7 +19,8 @@ module.exports = {
     hot: true,
     contentBase: resolve(__dirname, 'dist'),
     publicPath: '/',
-    historyApiFallback: true
+    historyApiFallback: true,
+    stats: { colors: true }
   },
   module: {
     loaders: [
