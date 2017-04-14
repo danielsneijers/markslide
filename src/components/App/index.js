@@ -26,7 +26,7 @@ class App extends PureComponent {
           <Route
             path='/:slide'
             render={
-              (props) => <SlideContainer navigateTo={this.navigateTo} {...props} />
+              () => <SlideContainer navigateTo={this.navigateTo} />
             }
           />
           <Redirect exact from='/' to='/1' />

@@ -1,32 +1,46 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { throttle } from 'lodash'
+import { withRouter } from 'react-router'
 import { KEY_CODES } from 'constants'
 import Slide from 'components/Slide'
 import { parse, splitSlides } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
 import MarkdownSheets from '../../sheets.md'
 
+const NEXT = 'next'
+const PREV = 'prev'
+
 class SlideContainer extends PureComponent {
+  constructor () {
+    super()
+
+    this.navigate = throttle(this.navigate, 200)
+  }
+
   componentDidMount () {
+    window.addEventListener('click', this.handleClick.bind(this))
     window.addEventListener('keydown', this.handleKeyDown.bind(this))
   }
 
   componentWillUnMount () {
+    window.removeEventListener('click', this.handleClick.bind(this))
     window.removeEventListener('keydown', this.handleKeyDown.bind(this))
   }
 
-  handleKeyDown (e) {
-    const currentIndex = parseInt(getSlideIndexFromProps(this.props))
-    const totalSlides = splitSlides(MarkdownSheets).length
+  handleClick (e) {
+    this.navigate(NEXT)
+  }
 
+  handleKeyDown (e) {
     switch (e.keyCode) {
       case KEY_CODES.LEFT:
       case KEY_CODES.UP:
-        currentIndex > 1 && this.props.navigateTo(`/${currentIndex - 1}`)
+        this.navigate(PREV)
         break
       case KEY_CODES.RIGHT:
       case KEY_CODES.DOWN:
-        currentIndex < totalSlides && this.props.navigateTo(`/${currentIndex + 1}`)
+        this.navigate(NEXT)
         break
       case KEY_CODES.F:
         this.enterFullScreen(this.container)
@@ -34,22 +48,20 @@ class SlideContainer extends PureComponent {
     }
   }
 
+  navigate (direction) {
+    const currentIndex = parseInt(getSlideIndexFromProps(this.props))
+    const totalSlides = splitSlides(MarkdownSheets).length
+
+    direction === PREV
+      ? currentIndex > 1 && this.props.navigateTo(`/${currentIndex - 1}`)
+      : currentIndex < totalSlides && this.props.navigateTo(`/${currentIndex + 1}`)
+  }
+
   enterFullScreen (elem) {
-    if (elem.requestFullscreen) {
-      return elem.requestFullscreen()
-    }
-
-    if (elem.webkitRequestFullscreen) {
-      return elem.webkitRequestFullscreen()
-    }
-
-    if (elem.mozRequestFullScreen) {
-      return elem.mozRequestFullScreen()
-    }
-
-    if (elem.msRequestFullscreen) {
-      return elem.msRequestFullscreen()
-    }
+    if (elem.requestFullscreen) elem.requestFullscreen()
+    if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen()
+    if (elem.mozRequestFullScreen) elem.mozRequestFullScreen()
+    if (elem.msRequestFullscreen) elem.msRequestFullscreen()
   }
 
   render () {
@@ -58,7 +70,11 @@ class SlideContainer extends PureComponent {
 
     return (
       <div ref={(c) => { this.container = c }}>
-        <Slide key={`slide-${slideIndex}`} content={parsedMarkdown[slideIndex]} />
+        <Slide
+          key={`slide-${slideIndex}`}
+          content={parsedMarkdown[slideIndex]}
+          onClick={this.handleClick}
+        />
       </div>
     )
   }
@@ -68,4 +84,4 @@ SlideContainer.propTypes = {
   navigateTo: PropTypes.func
 }
 
-export default SlideContainer
+export default withRouter(SlideContainer)

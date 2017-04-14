@@ -12,7 +12,7 @@ const Slide = ({ content, ...rest }) => {
       transitionEnterTimeout={500}
       transitionLeaveTimeout={300}
       transitionAppear
-      {...rest}
+      component='div'
     >
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </CSSTransitionGroup>

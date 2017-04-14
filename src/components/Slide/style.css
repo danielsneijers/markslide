@@ -1,13 +1,13 @@
 .slide {
   height: 100vh;
   width: 100vw;
-  background-color: #fafafa;
   color: #2b2b2b;
   padding: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  user-select: none;
 }
 
 :global .slide-appear {
