@@ -10,7 +10,8 @@
     "test": "jest --coverage --no-cache",
     "test:watch": "jest --watch",
     "lint": "yarn run lint:js",
-    "lint:js": "eslint ./src"
+    "lint:js": "eslint ./src",
+    "lint:css": "stylelint ./src/**/*.css"
   },
   "moduleRoots": [
     "src"
@@ -54,6 +55,8 @@
     "raw-loader": "^0.5.1",
     "react-hot-loader": "next",
     "style-loader": "^0.16.1",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   }
