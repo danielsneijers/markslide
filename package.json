@@ -9,7 +9,7 @@
     "start": "NODE_ENV=development webpack-dev-server --open",
     "test": "jest --coverage --no-cache",
     "test:watch": "jest --watch",
-    "lint": "yarn run lint:js",
+    "lint": "yarn run lint:css && yarn run lint:js",
     "lint:js": "eslint ./src",
     "lint:css": "stylelint ./src/**/*.css"
   },
