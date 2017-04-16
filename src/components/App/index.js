@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, Redirect, withRouter } from 'react-router'
-import SlideContainer from 'containers/SlideContainer'
+import SlidesContainer from 'containers/SlidesContainer'
 import CSS from './style.css'
 
 class App extends PureComponent {
@@ -26,7 +26,7 @@ class App extends PureComponent {
           <Route
             path='/:slide'
             render={
-              () => <SlideContainer navigateTo={this.navigateTo} />
+              () => <SlidesContainer navigateTo={this.navigateTo} />
             }
           />
           <Redirect exact from='/' to='/1' />

@@ -6,4 +6,6 @@ export const parseSlides = memoize((slides) =>
     marked(slide)))
 
 export const splitSlides = memoize((content) => content.split('\n---\n'))
+export const slidesCount = memoize((content) => splitSlides(content).length)
+
 export const parse = compose(parseSlides, splitSlides)

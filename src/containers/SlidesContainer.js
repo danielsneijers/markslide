@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { throttle } from 'lodash'
 import { withRouter } from 'react-router'
 import { KEY_CODES } from 'constants'
-import Slide from 'components/Slide'
-import { parse, splitSlides } from 'utils/markdown'
+import { parse, slidesCount } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
+import ProgressBar from 'components/ProgressBar'
+import Slide from 'components/Slide'
 import MarkdownSheets from '../../sheets.md'
 
 const NEXT = 'next'
@@ -50,7 +51,7 @@ class SlideContainer extends PureComponent {
 
   navigate (direction) {
     const currentIndex = parseInt(getSlideIndexFromProps(this.props))
-    const totalSlides = splitSlides(MarkdownSheets).length
+    const totalSlides = slidesCount(MarkdownSheets)
 
     direction === PREV
       ? currentIndex > 1 && this.props.navigateTo(`/${currentIndex - 1}`)
@@ -65,14 +66,17 @@ class SlideContainer extends PureComponent {
   }
 
   render () {
-    const slideIndex = parseInt(getSlideIndexFromProps(this.props)) - 1 // Array index starts at 0
+    const slideIndex = parseInt(getSlideIndexFromProps(this.props))
+    const totalSlides = slidesCount(MarkdownSheets)
     const parsedMarkdown = parse(MarkdownSheets)
+    const progressBarOffset = (1 - slideIndex / totalSlides) * 100
 
     return (
       <div ref={(c) => { this.container = c }}>
+        <ProgressBar offset={progressBarOffset} />
         <Slide
           key={`slide-${slideIndex}`}
-          content={parsedMarkdown[slideIndex]}
+          content={parsedMarkdown[slideIndex - 1]} // Array starts at 0 index
           onClick={this.handleClick}
         />
       </div>
@@ -81,7 +85,7 @@ class SlideContainer extends PureComponent {
 }
 
 SlideContainer.propTypes = {
-  navigateTo: PropTypes.func
+  navigateTo: PropTypes.func.isRequired
 }
 
 export default withRouter(SlideContainer)
