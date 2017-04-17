@@ -7,7 +7,7 @@ import { parse, slidesCount } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
 import ProgressBar from 'components/ProgressBar'
 import Slide from 'components/Slide'
-import MarkdownSheets from '../../sheets.md'
+import MarkdownSheets from '../../slides.md'
 
 const NEXT = 'next'
 const PREV = 'prev'
