@@ -6,7 +6,9 @@
   "author": "Daniel Sneijers <daniel.sneijers@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --open",
+    "start": "yarn run build && cd dist && serve -s",
+    "dev": "NODE_ENV=development webpack-dashboard -- webpack-dev-server --open",
+    "build": "NODE_ENV=production webpack",
     "test": "jest --coverage --no-cache",
     "test:watch": "jest --watch",
     "lint": "yarn run lint:css && yarn run lint:js",
@@ -46,7 +48,6 @@
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^19.0.2",
-    "lodash-webpack-plugin": "^0.11.2",
     "postcss": "^5.2.16",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
@@ -58,6 +59,7 @@
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
     "webpack": "^2.3.3",
+    "webpack-dashboard": "^0.3.0",
     "webpack-dev-server": "^2.4.2"
   }
 }

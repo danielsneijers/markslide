@@ -1,26 +1,14 @@
 const { resolve } = require('path')
 const webpack = require('webpack')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
-module.exports = {
+const baseConfig = {
   context: resolve(__dirname, 'src'),
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './index.js'
-  ],
+  entry: [ './index.js' ],
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
     publicPath: '/'
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    hot: true,
-    contentBase: resolve(__dirname, 'dist'),
-    publicPath: '/',
-    historyApiFallback: true,
-    stats: { colors: true }
   },
   module: {
     loaders: [
@@ -55,10 +43,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ],
   resolve: {
     extensions: ['.js'],
     modules: [
@@ -69,4 +53,40 @@ module.exports = {
       constants$: resolve(__dirname, 'src/constants/index.js')
     }
   }
+}
+
+if (process.env.NODE_ENV === 'development') {
+  module.exports = Object.assign(baseConfig, {
+    entry: baseConfig.entry.concat([
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server'
+    ]),
+    devtool: 'inline-source-map',
+    devServer: {
+      hot: true,
+      contentBase: resolve(__dirname, 'dist'),
+      publicPath: '/',
+      historyApiFallback: true,
+      stats: { colors: true }
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
+      new DashboardPlugin()
+    ]
+  })
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = Object.assign(baseConfig, {
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin()
+    ]
+  })
 }
