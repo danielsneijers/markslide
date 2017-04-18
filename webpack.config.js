@@ -50,6 +50,7 @@ const baseConfig = {
       resolve(__dirname, './src')
     ],
     alias: {
+      config: resolve(__dirname, 'config/'),
       constants$: resolve(__dirname, 'src/constants/index.js')
     }
   }
@@ -57,11 +58,12 @@ const baseConfig = {
 
 if (process.env.NODE_ENV === 'development') {
   module.exports = Object.assign(baseConfig, {
-    entry: baseConfig.entry.concat([
+    entry: [
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server'
-    ]),
+      'webpack/hot/only-dev-server',
+      './index.js'
+    ],
     devtool: 'inline-source-map',
     devServer: {
       hot: true,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { throttle } from 'lodash'
 import { withRouter } from 'react-router'
 import { KEY_CODES } from 'constants'
+import Settings from 'config/settings'
 import { parse, slidesCount } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
 import ProgressBar from 'components/ProgressBar'
@@ -19,14 +20,35 @@ class SlideContainer extends PureComponent {
     this.navigate = throttle(this.navigate, 200)
   }
 
+  componentWillMount () {
+    this.totalSlides = slidesCount(MarkdownSheets)
+    this.updateIndex(this.props)
+  }
+
   componentDidMount () {
     window.addEventListener('click', this.handleClick.bind(this))
     window.addEventListener('keydown', this.handleKeyDown.bind(this))
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.updateIndex(nextProps)
+  }
+
   componentWillUnMount () {
     window.removeEventListener('click', this.handleClick.bind(this))
     window.removeEventListener('keydown', this.handleKeyDown.bind(this))
+  }
+
+  updateIndex (props) {
+    this.currentIndex = parseInt(getSlideIndexFromProps(props))
+
+    if (this.currentIndex > this.totalSlides) {
+      props.navigateTo(`/${this.totalSlides}`)
+    }
+
+    if (this.currentIndex < 1) {
+      props.navigateTo('/1')
+    }
   }
 
   handleClick (e) {
@@ -50,12 +72,9 @@ class SlideContainer extends PureComponent {
   }
 
   navigate (direction) {
-    const currentIndex = parseInt(getSlideIndexFromProps(this.props))
-    const totalSlides = slidesCount(MarkdownSheets)
-
     direction === PREV
-      ? currentIndex > 1 && this.props.navigateTo(`/${currentIndex - 1}`)
-      : currentIndex < totalSlides && this.props.navigateTo(`/${currentIndex + 1}`)
+      ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
+      : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)
   }
 
   enterFullScreen (elem) {
@@ -66,17 +85,18 @@ class SlideContainer extends PureComponent {
   }
 
   render () {
-    const slideIndex = parseInt(getSlideIndexFromProps(this.props))
-    const totalSlides = slidesCount(MarkdownSheets)
     const parsedMarkdown = parse(MarkdownSheets)
-    const progressBarOffset = (1 - slideIndex / totalSlides) * 100
+    const progressBarOffset = (1 - this.currentIndex / this.totalSlides) * 100
+    const progressBar = Settings.progressBar
+      ? <ProgressBar offset={progressBarOffset} />
+      : null
 
     return (
       <div ref={(c) => { this.container = c }}>
-        <ProgressBar offset={progressBarOffset} />
+        {progressBar}
         <Slide
-          key={`slide-${slideIndex}`}
-          content={parsedMarkdown[slideIndex - 1]} // Array starts at 0 index
+          key={`slide-${this.currentIndex}`}
+          content={parsedMarkdown[this.currentIndex - 1]} // Array starts at 0 index
           onClick={this.handleClick}
         />
       </div>
