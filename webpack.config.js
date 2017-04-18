@@ -1,6 +1,8 @@
 const { resolve } = require('path')
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { title } = require('./config/settings')
 
 const baseConfig = {
   context: resolve(__dirname, 'src'),
@@ -87,6 +89,12 @@ if (process.env.NODE_ENV === 'production') {
         'process.env': {
           NODE_ENV: JSON.stringify('production')
         }
+      }),
+      new HtmlWebpackPlugin({
+        title,
+        template: 'template.ejs',
+        minify: { minifyCSS: true, useShortDoctype: true },
+        hash: true
       }),
       new webpack.optimize.UglifyJsPlugin()
     ]
