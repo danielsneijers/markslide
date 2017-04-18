@@ -2,6 +2,8 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const { title } = require('./config/settings')
 
 const baseConfig = {
@@ -83,7 +85,34 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 if (process.env.NODE_ENV === 'production') {
+  baseConfig.module.loaders.splice(-1, 1)
+
   module.exports = Object.assign(baseConfig, {
+    module: {
+      loaders: baseConfig.module.loaders.concat([
+        {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              {
+                loader: 'css-loader',
+                query: {
+                  importLoaders: 1,
+                  sourceMap: false,
+                  modules: true,
+                  minimize: true,
+                  localIdentName: '[hash:base64:5]'
+                }
+              },
+              {
+                loader: 'postcss-loader'
+              }
+            ]
+          })
+        }
+      ])
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
@@ -95,6 +124,10 @@ if (process.env.NODE_ENV === 'production') {
         template: 'template.ejs',
         minify: { minifyCSS: true, useShortDoctype: true },
         hash: true
+      }),
+      new ExtractTextPlugin('styles.css'),
+      new ScriptExtHtmlWebpackPlugin({
+        defaultAttribute: 'async'
       }),
       new webpack.optimize.UglifyJsPlugin()
     ]
