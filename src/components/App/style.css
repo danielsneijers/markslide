@@ -1,5 +1,6 @@
 @import "./reset.css";
 @import "./typography.css";
+@import "../../../config/themes/default.css";
 
 * {
   box-sizing: border-box;
