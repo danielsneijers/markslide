@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import { throttle } from 'lodash'
 import { withRouter } from 'react-router'
 import { KEY_CODES } from 'constants'
-import Settings from 'config/settings'
 import { parse, slidesCount } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
-import ProgressBar from 'components/ProgressBar'
+import { getProgressBar } from 'utils/settings'
 import Slide from 'components/Slide'
 import MarkdownSheets from '../../slides.md'
 
@@ -86,14 +85,11 @@ class SlideContainer extends PureComponent {
 
   render () {
     const parsedMarkdown = parse(MarkdownSheets)
-    const progressBarOffset = (1 - this.currentIndex / this.totalSlides) * 100
-    const progressBar = Settings.progressBar
-      ? <ProgressBar offset={progressBarOffset} />
-      : null
+    const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
 
     return (
       <div ref={(c) => { this.container = c }}>
-        {progressBar}
+        {getProgressBar(progressBarProps)}
         <Slide
           key={`slide-${this.currentIndex}`}
           content={parsedMarkdown[this.currentIndex - 1]} // Array starts at 0 index

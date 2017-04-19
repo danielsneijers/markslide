@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, Redirect, withRouter } from 'react-router'
+import { applyTheme } from 'config/themes'
 import SlidesContainer from 'containers/SlidesContainer'
 import CSS from './style.css'
 
@@ -9,6 +10,10 @@ class App extends PureComponent {
     super()
 
     this.navigateTo = this.navigateTo.bind(this)
+  }
+
+  componentWillMount () {
+    applyTheme()
   }
 
   /**
