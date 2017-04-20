@@ -1,0 +1,10 @@
+[ignore]
+.*/__tests__/.*
+.*/node_modules/stylelint/.*
+
+[include]
+<PROJECT_ROOT>/src/
+
+[libs]
+
+[options]

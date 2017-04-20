@@ -23,3 +23,7 @@ All files you need are in the `config` folder, change them however you seem fit
 
 ### Themes
 Applying a different theme requires a Webpack restart
+
+
+## To do
+- [ ] explain flow-typed
