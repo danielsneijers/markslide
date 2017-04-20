@@ -8,38 +8,20 @@
   "env": {
     "development": {
       "presets": [
-        [
-          "env", {
-            "modules": false,
-            "targets": { "browsers": ["last 2 versions", "> 5%"] }
-          }
-        ]
+        ["env", { "modules": false, "targets": { "browsers": ["last 2 versions", "> 5%"] } }]
       ],
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
+      "plugins": ["react-hot-loader/babel"]
     },
     "test": {
       "presets": [
-        [
-          "env", {
-            "targets": { "browsers": ["last 2 versions", "> 5%"] }
-          }
-        ]
+        ["env", { "targets": { "browsers": ["last 2 versions", "> 5%"] } }]
       ]
     },
     "production": {
       "presets": [
-        [
-          "env", {
-            "targets": { "browsers": ["last 2 versions", "> 5%"] }
-          }
-        ]
+        ["env", { "targets": { "browsers": ["last 2 versions", "> 5%"] } }]
       ],
-      "plugins": [
-        "ramda",
-        "lodash"
-      ]
+      "plugins": ["ramda", "lodash"]
     }
   }
 }
