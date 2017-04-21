@@ -3,7 +3,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import PropTypes from 'prop-types'
 import CSS from './style.css'
 
-const Slide = ({ content, ...rest }) => {
+const Slide = ({ content }) => {
   return (
     <CSSTransitionGroup
       className={CSS.slide}

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Slide it renders correctly 1`] = `
+<CSSTransitionGroup
+  className="slide"
+  component="div"
+  transitionAppear={true}
+  transitionAppearTimeout={500}
+  transitionEnter={true}
+  transitionEnterTimeout={500}
+  transitionLeave={true}
+  transitionLeaveTimeout={300}
+  transitionName="slide"
+>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": <h1>
+          Hello Test!
+      </h1>,
+      }
+    }
+  />
+</CSSTransitionGroup>
+`;

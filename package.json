@@ -13,6 +13,7 @@
     "clean": "rm -rf ./dist",
     "test": "jest --coverage --no-cache --config .jestrc",
     "test:watch": "jest --watch --config .jestrc",
+    "test:snapshot": "jest --updateSnapshot --config .jestrc",
     "flow": "flow status",
     "lint": "run-p lint:*",
     "lint:js": "eslint ./src",
