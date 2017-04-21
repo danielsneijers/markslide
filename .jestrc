@@ -1,0 +1,14 @@
+{
+  "moduleFileExtensions": [
+    "js"
+  ],
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "moduleNameMapper": {
+    "^config$": "<rootDir>/config",
+    "\\.css$": "identity-obj-proxy"
+  },
+  "snapshotSerializers": ["enzyme-to-json/serializer"]
+}

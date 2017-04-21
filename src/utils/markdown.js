@@ -1,5 +1,6 @@
+// @flow
 import marked from 'marked'
-import { memoize, compose } from 'ramda'
+import { compose } from 'ramda'
 
 marked.setOptions({
   highlight: function (code) {
@@ -7,10 +8,14 @@ marked.setOptions({
   }
 })
 
-export const splitSlides = memoize((content) => content.split('\n---\n'))
-export const slidesCount = memoize((content) => splitSlides(content).length)
-export const parseSlides = memoize((slides) =>
-  slides.map((slide) =>
-    marked(slide)))
+export const splitSlides = (content: string): Array<string> =>
+  content.split('\n---\n')
+
+export const slidesCount = (content: string): number =>
+  splitSlides(content).length
+
+export const parseSlides = (slides: Array<string>): Array<HTMLElement> =>
+  slides.map((slide: string) =>
+    marked(slide))
 
 export const parse = compose(parseSlides, splitSlides)

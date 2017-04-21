@@ -4,7 +4,14 @@
     "flow"
   ],
   "plugins": [
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "config": "./config",
+        "constants$": "src/constants/index.js"
+      }
+    }]
   ],
   "env": {
     "development": {

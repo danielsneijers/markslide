@@ -1,7 +1,7 @@
 // @flow
 import { get } from 'lodash'
 
-type RouterProps = {
+export type RouterProps = {
   match: {
     params: { }
   }

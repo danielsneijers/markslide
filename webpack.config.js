@@ -50,13 +50,8 @@ const baseConfig = {
   resolve: {
     extensions: ['.js'],
     modules: [
-      'node_modules',
-      resolve(__dirname, './src')
-    ],
-    alias: {
-      config: resolve(__dirname, 'config/'),
-      constants$: resolve(__dirname, 'src/constants/index.js')
-    }
+      'node_modules'
+    ]
   }
 }
 
