@@ -17,14 +17,6 @@ hue-6:   #d19a66
 hue-6-2: #e6c07b
 
 */
-
-pre {
-  background-color: #1B2B34;
-  color: #fafafa;
-  padding: 1em;
-  border-radius: 3px;
-}
-
 :global .hljs {
   display: block;
   overflow-x: auto;

@@ -1,34 +1,13 @@
-/*
+:root {
+  --red: #EA5E5B;
+  --blue: #56A9F6;
+  --grey: #A7AAA9;
+}
 
-Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-
-base:    #282c34
-mono-1:  #abb2bf
-mono-2:  #818896
-mono-3:  #5c6370
-hue-1:   #56b6c2
-hue-2:   #61aeee
-hue-3:   #c678dd
-hue-4:   #98c379
-hue-5:   #e06c75
-hue-5-2: #be5046
-hue-6:   #d19a66
-hue-6-2: #e6c07b
-
-*/
 html,
 body {
   font-size: 1.5em;
-  font-family:
-    -apple-system,
-    ".SFNSText-Regular",
-    "San Francisco",
-    "Roboto",
-    "Segoe UI",
-    "Helvetica Neue",
-    "Lucida Grande",
-    sans-serif;
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif; /* stylelint-disable-line max-line-length */
   line-height: 1.5em;
 }
 
@@ -65,86 +44,132 @@ p {
   font-size: 1.953em;
 }
 
+small {
+  color: #A7AAA9;
+}
+
+/*
+ * Highlighted code styles
+ */
+code,
 pre {
-  background-color: #1B2B34;
-  color: #fafafa;
-  padding: 1em;
-  border-radius: 3px;
+  color: #C5C8C6;
+  text-shadow: 0 1px rgba(0, 0, 0, .3);
+  font-family: "Fira Code", Monaco, Consolas, 'Courier New', Courier, monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
 }
 
-:global .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #abb2bf;
-  background: #282c34;
+/* Code blocks */
+pre {
+  padding: 0 .2em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: .3em;
 }
 
-:global .hljs-comment,
-:global .hljs-quote {
-  color: #5c6370;
-  font-style: italic;
+:global .token.comment,
+:global .token.prolog,
+:global .token.doctype,
+:global .token.cdata {
+  color: #7C7C7C;
 }
 
-:global .hljs-doctag,
-:global .hljs-keyword,
-:global .hljs-formula {
-  color: #c678dd;
+:global .token.punctuation {
+  color: #C5C8C6;
 }
 
-:global .hljs-section,
-:global .hljs-name,
-:global .hljs-selector-tag,
-:global .hljs-deletion,
-:global .hljs-subst {
-  color: #e06c75;
+.namespace {
+  opacity: .7;
 }
 
-:global .hljs-literal {
-  color: #56b6c2;
+:global .token.property,
+:global .token.keyword,
+:global .token.tag {
+  color: #96CBFE;
 }
 
-:global .hljs-string,
-:global .hljs-regexp,
-:global .hljs-addition,
-:global .hljs-attribute,
-:global .hljs-meta-string {
-  color: #98c379;
+:global .token.class-name {
+  color: #FFFFB6;
+  text-decoration: underline;
 }
 
-:global .hljs-built_in,
-:global .hljs-class .hljs-title {
-  color: #e6c07b;
+:global .token.boolean,
+:global .token.constant {
+  color: #9C9;
 }
 
-:global .hljs-attr,
-:global .hljs-variable,
-:global .hljs-template-variable,
-:global .hljs-type,
-:global .hljs-selector-class,
-:global .hljs-selector-attr,
-:global .hljs-selector-pseudo,
-:global .hljs-number {
-  color: #d19a66;
+:global .token.symbol,
+:global .token.deleted {
+  color: #F92672;
 }
 
-:global .hljs-symbol,
-:global .hljs-bullet,
-:global .hljs-link,
-:global .hljs-meta,
-:global .hljs-selector-id,
-:global .hljs-title {
-  color: #61aeee;
+:global .token.number {
+  color: #FF73FD;
 }
 
-:global .hljs-emphasis {
-  font-style: italic;
+:global .token.selector,
+:global .token.attr-name,
+:global .token.string,
+:global .token.char,
+:global .token.builtin,
+:global .token.inserted {
+  color: #A8FF60;
 }
 
-:global .hljs-strong {
+:global .token.variable {
+  color: #C6C5FE;
+}
+
+:global .token.operator {
+  color: #EDEDED;
+}
+
+:global .token.entity {
+  color: #FFFFB6;
+}
+
+:global .token.url {
+  color: #96CBFE;
+}
+
+:global .language-css .token.string,
+:global .style .token.string {
+  color: #87C38A;
+}
+
+:global .token.atrule,
+:global .token.attr-value {
+  color: #F9EE98;
+}
+
+:global .token.function {
+  color: #DAD085;
+}
+
+:global .token.regex {
+  color: #E9C062;
+}
+
+:global .token.important {
+  color: #FD971F;
+}
+
+:global .token.important,
+:global .token.bold {
   font-weight: bold;
 }
 
-:global .hljs-link {
-  text-decoration: underline;
+:global .token.italic {
+  font-style: italic;
+}
+
+:global .token.entity {
+  cursor: help;
 }
