@@ -6,7 +6,7 @@ import { KEY_CODES } from 'constants'
 import { parse, slidesCount } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
 import { getProgressBar } from 'utils/settings'
-import Slide from 'components/Slide'
+import { getSlide } from 'utils/slide'
 import MarkdownSheets from '../../slides.md'
 
 const NEXT = 'next'
@@ -86,15 +86,17 @@ class SlideContainer extends PureComponent {
   render () {
     const parsedMarkdown = parse(MarkdownSheets)
     const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
+    const content = parsedMarkdown[this.currentIndex - 1]
+    const slideProps = {
+      content,
+      key: `slide-${this.currentIndex}`,
+      onClick: this.handleClick
+    }
 
     return (
       <div ref={(c) => { this.container = c }}>
         {getProgressBar(progressBarProps)}
-        <Slide
-          key={`slide-${this.currentIndex}`}
-          content={parsedMarkdown[this.currentIndex - 1]} // Array starts at 0 index
-          onClick={this.handleClick}
-        />
+        {getSlide(content, slideProps)}
       </div>
     )
   }

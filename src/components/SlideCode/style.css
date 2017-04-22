@@ -1,0 +1,12 @@
+.slide {
+  height: 100vh;
+  width: 100vw;
+  color: #FAFAFA;
+  padding: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  background: #1B2B34;
+}
