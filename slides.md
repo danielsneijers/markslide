@@ -1,5 +1,17 @@
-The road to a
-# REACT COMPONENT LIBRARY
+<small>**THE ROAD TO A**</small>
+# REACT <blue>COMPONENT</blue> LIBRARY
+---
+code example
+```javascript
+marked.setOptions({
+  highlight: (code) => {
+    console.log('%c code ', 'background-color:#f1c40f; color: white; font-weight: bold; padding: 4px 0;', code)
+
+    return highlight(code, Prism.languages.javascript)
+  }
+})
+
+```
 ---
 Hi I'm Daniel from Blendle
 ---
