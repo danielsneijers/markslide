@@ -1,16 +1,16 @@
+// @flow
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { Switch, Route, Redirect, withRouter } from 'react-router'
 import { applyTheme } from 'config/themes'
 import SlidesContainer from 'containers/SlidesContainer'
 import CSS from './style.css'
 
-class App extends PureComponent {
-  constructor () {
-    super()
+type AppProps = {
+  history: { push: Function }
+}
 
-    this.navigateTo = this.navigateTo.bind(this)
-  }
+class App extends PureComponent {
+  props: AppProps
 
   componentWillMount () {
     applyTheme()
@@ -20,11 +20,11 @@ class App extends PureComponent {
    * Need to call the history.push() in a parent component of the
    * slides container to trigger a rerender
    */
-  navigateTo (url) {
+  navigateTo = (url) => {
     this.props.history.push(url)
   }
 
-  render () {
+  render (): React$Element<any> {
     return (
       <div className={CSS.wrapper}>
         <Switch>
@@ -39,10 +39,6 @@ class App extends PureComponent {
       </div>
     )
   }
-}
-
-App.propTypes = {
-  history: PropTypes.object
 }
 
 export default withRouter(App)
