@@ -18,18 +18,19 @@
       "presets": [
         ["env", { "modules": false, "targets": { "browsers": ["last 2 versions", "> 5%"] } }]
       ],
-      "plugins": ["react-hot-loader/babel"]
+      "plugins": ["react-hot-loader/babel", "flow-react-proptypes", "transform-class-properties"]
     },
     "test": {
       "presets": [
         ["env", { "targets": { "browsers": ["last 2 versions", "> 5%"] } }]
-      ]
+      ],
+      "plugins": ["transform-class-properties"]
     },
     "production": {
       "presets": [
         ["env", { "targets": { "browsers": ["last 2 versions", "> 5%"] } }]
       ],
-      "plugins": ["ramda", "lodash"]
+      "plugins": ["transform-class-properties", "ramda", "lodash"]
     }
   }
 }
