@@ -24,9 +24,9 @@ const slide2 =
 - bullets
 - etc`
 const html = [
-  '<h1 id="title">Title</h1>\n' +
+  '<h1>Title</h1>\n' +
   '<p>Some content</p>\n',
-  '<h2 id="new-slide">New slide</h2>\n' +
+  '<h2>New slide</h2>\n' +
   '<ul>\n' +
   '<li>with list</li>\n' +
   '<li>bullets</li>\n' +

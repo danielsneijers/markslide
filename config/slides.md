@@ -1,7 +1,7 @@
 <small>**THE ROAD TO A**</small>
 # REACT <blue>COMPONENT</blue> LIBRARY
 ---
-code example
+## code example
 ```javascript
 marked.setOptions({
   highlight: (code) => {
@@ -10,22 +10,40 @@ marked.setOptions({
     return highlight(code, Prism.languages.javascript)
   }
 })
-
 ```
 ---
-Hi I'm Daniel from Blendle
+## code example 2
+```javascript
+import Marked from 'marked'
+import { compose } from 'ramda'
+import renderer from 'utils/renderer'
+
+export const splitSlides = (content: string): Array<string> =>
+  content.split('\n---\n')
+
+export const slidesCount = (content: string): number =>
+  splitSlides(content).length
+
+export const parseSlides = (slides: Array<string>): Array<HTMLElement> =>
+  slides.map((slide: string) =>
+    Marked(slide, { renderer }))
+
+export const parse = compose(parseSlides, splitSlides)
+```
+---
+Hi I'm Daniel from <red>Blendle</red>
 ---
 Component Library? Why?
 ---
-Why not?
+Why <blue>not?</blue>
 ---
-So let’s talk about a day in the life of a front end developer
+So let’s talk about a day in the life of a <blue>front end developer</blue>
 ---
-I like beautiful user interfaces …
+I like <blue>beautiful</blue> user interfaces …
 ---
-… I love beautiful code …
+… I love <blue>beautiful</blue> code …
 ---
-… but my boss likes deadlines
+… but my boss likes <red>deadlines</red>
 ---
 🤔
 ---

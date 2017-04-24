@@ -1,12 +1,7 @@
 // @flow
-import marked from 'marked'
+import Marked from 'marked'
 import { compose } from 'ramda'
-
-marked.setOptions({
-  highlight: function (code) {
-    return require('highlight.js').highlightAuto(code).value
-  }
-})
+import renderer from 'utils/renderer'
 
 export const splitSlides = (content: string): Array<string> =>
   content.split('\n---\n')
@@ -16,6 +11,6 @@ export const slidesCount = (content: string): number =>
 
 export const parseSlides = (slides: Array<string>): Array<HTMLElement> =>
   slides.map((slide: string) =>
-    marked(slide))
+    Marked(slide, { renderer }))
 
 export const parse = compose(parseSlides, splitSlides)
