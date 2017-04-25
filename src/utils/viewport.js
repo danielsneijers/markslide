@@ -16,7 +16,7 @@ export const getElementSize = (element: HTMLElement): ElementDimensions => {
   }
 }
 
-const memoizedGetElementSize: Function = memoize(getElementSize)
+export const memoizedGetElementSize: Function = memoize(getElementSize)
 
 export const dimensionsFitViewport = (elementDimensions: ElementDimensions): boolean => {
   const { width, height } = elementDimensions
@@ -24,7 +24,7 @@ export const dimensionsFitViewport = (elementDimensions: ElementDimensions): boo
   return window.innerWidth >= width && window.innerHeight >= height
 }
 
-export const elementOutOfBoundPercentage = (elementDimensions: ElementDimensions): ElementDimensions => {
+export const elementOutOfBoundFraction = (elementDimensions: ElementDimensions): ElementDimensions => {
   const { width, height } = elementDimensions
 
   return {
@@ -33,11 +33,11 @@ export const elementOutOfBoundPercentage = (elementDimensions: ElementDimensions
   }
 }
 
-export const scaleToFit = (outOfBoundPercentage: ElementDimensions): number => {
-  const { width, height } = outOfBoundPercentage
+export const scaleToFit = (outOfBoundFraction: ElementDimensions): number => {
+  const { width, height } = outOfBoundFraction
 
   return width > height ? height : width
 }
 
 export const elementFitsViewport: Function = compose(dimensionsFitViewport, memoizedGetElementSize)
-export const scaleElementToFit: Function = compose(scaleToFit, elementOutOfBoundPercentage, memoizedGetElementSize)
+export const scaleElementToFit: Function = compose(scaleToFit, elementOutOfBoundFraction, memoizedGetElementSize)

@@ -12,7 +12,8 @@ marked.setOptions({
 })
 ```
 ---
-## code example 2
+<!-- loc: [1,2], [4,7] -->
+## code example
 ```javascript
 import Marked from 'marked'
 import { compose } from 'ramda'
