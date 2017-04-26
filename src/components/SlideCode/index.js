@@ -41,40 +41,32 @@ class SlideCode extends PureComponent {
   }
 
   checkForScaling = () => {
-    setTimeout(() => {
-      const wrapper = document.getElementById(SLIDE_ID)
-      const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)
-      const width = 90 / scaleFraction
+    const wrapper = document.getElementById(SLIDE_ID)
+    const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)
+    const width = 90 / scaleFraction
 
-      const style = {
-        transform: `scale(${scaleFraction})`,
-        position: 'absolute',
-        width: `${width}%`
-      }
+    const style = {
+      transform: `scale(${scaleFraction}) translateY(0)`,
+      position: 'absolute',
+      width: `${width}%`,
+      opacity: 1
+    }
 
-      this.setState({ style })
-    }, 200)
+    this.setState({ style })
   }
 
   render (): React$Element<any> {
     const { content } = this.props
 
     return (
-      <CSSTransitionGroup
-        className={CSS.slide}
-        transitionName='slide'
-        transitionAppearTimeout={500}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
-        transitionAppear
-        component='div'
-      >
+      <div className={CSS.slide}>
         <div
           id={SLIDE_ID}
-          style={{ ...this.state.style }}
+          className={CSS.code}
+          style={{ opacity: 0, ...this.state.style }}
           dangerouslySetInnerHTML={{ __html: content }}
         />
-      </CSSTransitionGroup>
+      </div>
     )
   }
 }

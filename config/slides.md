@@ -6,6 +6,7 @@
 marked.setOptions({
   highlight: (code) => {
     console.log('%c code ', 'background-color:#f1c40f; color: white; font-weight: bold; padding: 4px 0;', code)
+    console.log('%c code ', 'background-color:#f1c40f; color: white; font-weight: bold; padding: 4px 0;', code)
 
     return highlight(code, Prism.languages.javascript)
   }
