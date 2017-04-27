@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react'
-// import { debounce } from 'lodash'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import { debounce } from 'lodash'
 import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
 import CSS from './style.css'
 
@@ -23,11 +22,8 @@ class SlideCode extends PureComponent {
   props: SlideCodeProps
   state: State
 
-  constructor (props: SlideCodeProps) {
-    super(props)
-
-    // this.checkForScaling = debounce(this.checkForScaling, 200)
-    this.state = { style: {} }
+  state = {
+    style: {}
   }
 
   componentDidMount () {
@@ -40,7 +36,7 @@ class SlideCode extends PureComponent {
     this.checkForScaling()
   }
 
-  checkForScaling = () => {
+  checkForScaling = debounce(() => {
     const wrapper = document.getElementById(SLIDE_ID)
     const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)
     const width = 90 / scaleFraction
@@ -53,7 +49,7 @@ class SlideCode extends PureComponent {
     }
 
     this.setState({ style })
-  }
+  }, 200)
 
   render (): React$Element<any> {
     const { content } = this.props

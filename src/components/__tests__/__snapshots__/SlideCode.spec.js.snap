@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/SlideCode renders correctly 1`] = `
+<div
+  className="slide"
+>
+  <div
+    className="code"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class='lang-javascript'>console<span class='token punctuation'>.</span><span class='token function'>log</span><span class='token punctuation'>(</span><span class='token string'>'hello world!'</span><span class='token punctuation'>)</span></code></pre>",
+      }
+    }
+    id="code-slide-content"
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  />
+</div>
+`;
