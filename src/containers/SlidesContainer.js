@@ -1,5 +1,5 @@
+// @flow
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { throttle } from 'lodash'
 import { withRouter } from 'react-router'
 import { KEY_CODES } from 'constants'
@@ -9,18 +9,22 @@ import { getSlideIndexFromProps } from 'utils/router'
 import { getProgressBar } from 'utils/settings'
 import { getSlide } from 'utils/slide'
 
+type Props = {
+  navigateTo: Function
+}
+
 const NEXT = 'next'
 const PREV = 'prev'
 
-class SlideContainer extends PureComponent {
-  constructor () {
-    super()
-
-    this.navigate = throttle(this.navigate, 200)
-  }
+class SlidesContainer extends PureComponent {
+  props: Props
+  totalSlides: number
+  currentIndex: number
+  container: HTMLDivElement
 
   componentWillMount () {
     this.totalSlides = slidesCount(MarkdownSheets)
+
     this.updateIndex(this.props)
   }
 
@@ -70,16 +74,19 @@ class SlideContainer extends PureComponent {
     }
   }
 
-  navigate (direction) {
+  navigate = throttle((direction) => {
     direction === PREV
       ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
       : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)
-  }
+  }, 200)
 
-  enterFullScreen (elem) {
+  enterFullScreen (elem: HTMLDivElement) {
     if (elem.requestFullscreen) elem.requestFullscreen()
+    // $FlowFixMe
     if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen()
+    // $FlowFixMe
     if (elem.mozRequestFullScreen) elem.mozRequestFullScreen()
+    // $FlowFixMe
     if (elem.msRequestFullscreen) elem.msRequestFullscreen()
   }
 
@@ -88,7 +95,6 @@ class SlideContainer extends PureComponent {
     const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
     const content = parsedMarkdown[this.currentIndex - 1]
     const slideProps = {
-      content,
       key: `slide-${this.currentIndex}`,
       onClick: this.handleClick
     }
@@ -102,8 +108,5 @@ class SlideContainer extends PureComponent {
   }
 }
 
-SlideContainer.propTypes = {
-  navigateTo: PropTypes.func.isRequired
-}
-
-export default withRouter(SlideContainer)
+export default withRouter(SlidesContainer)
+export const withOutRouter = SlidesContainer

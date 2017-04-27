@@ -4,21 +4,25 @@ import { BrowserRouter } from 'react-router-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './components/App'
 
-const render = (Component) => {
+const tree = (Component, Router) => (
+  <AppContainer>
+    <Router>
+      <Component />
+    </Router>
+  </AppContainer>
+)
+
+const render = (Component, Router) => {
   ReactDOM.render(
-    <AppContainer>
-      <BrowserRouter>
-        <Component />
-      </BrowserRouter>
-    </AppContainer>,
+    tree(Component, Router),
     document.getElementById('root')
   )
 }
 
-render(App)
+render(App, BrowserRouter)
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
-    render(App)
+    render(App, BrowserRouter)
   })
 }

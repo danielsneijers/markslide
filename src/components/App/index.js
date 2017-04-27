@@ -5,12 +5,12 @@ import { applyTheme } from 'config/themes'
 import SlidesContainer from 'containers/SlidesContainer'
 import CSS from './style.css'
 
-type AppProps = {
+type Props = {
   history: { push: Function }
 }
 
 class App extends PureComponent {
-  props: AppProps
+  props: Props
 
   componentWillMount () {
     applyTheme()

@@ -1,6 +1,7 @@
 [ignore]
 .*/__tests__/.*
 .*/node_modules/stylelint/.*
+.*/node_modules/flow-coverage-report/.*
 
 [include]
 <PROJECT_ROOT>/src/
@@ -10,3 +11,4 @@
 [options]
 module.system.node.resolve_dirname=src
 module.name_mapper='^config\/\(.*\)$' -> '<PROJECT_ROOT>/config/\1'
+module.name_mapper.extension='md' -> '<PROJECT_ROOT>/MDFlowStub.js.flow'

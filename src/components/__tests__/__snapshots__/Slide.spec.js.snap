@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Slide it renders correctly 1`] = `
+exports[`components/Slide renders correctly 1`] = `
 <CSSTransitionGroup
   className="slide"
   component="div"

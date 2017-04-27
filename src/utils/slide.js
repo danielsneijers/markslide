@@ -3,10 +3,8 @@ import React from 'react'
 import Slide from 'components/Slide'
 import SlideCode from 'components/SlideCode'
 
-type SlideTypes = React$Element<Slide> | React$Element<SlideCode>
 type SlideProps = {
   key: string,
-  content: string,
   onClick: Function
 }
 
@@ -18,11 +16,13 @@ export const getSlideType = (content: string): string => {
   return 'default'
 }
 
-export const getSlide = (content: string, props: SlideProps): SlideTypes => {
+export const getSlide = (content: string, elementProps: SlideProps): React$Element<any> => {
+  const { key, onClick } = elementProps
+
   switch (getSlideType(content)) {
     case 'code':
-      return <SlideCode {...props} />
+      return <SlideCode key={key} content={content} onClick={onClick} />
     default:
-      return <Slide {...props} />
+      return <Slide key={key} content={content} onClick={onClick} />
   }
 }

@@ -1,9 +1,15 @@
+// @flow
 import React from 'react'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import PropTypes from 'prop-types'
 import CSS from './style.css'
 
-const Slide = ({ content }) => {
+type Props = {
+  key?: string,
+  content: string,
+  onClick: Function
+}
+
+const Slide = ({ content, ...rest }: Props) => {
   return (
     <CSSTransitionGroup
       className={CSS.slide}
@@ -13,14 +19,11 @@ const Slide = ({ content }) => {
       transitionLeaveTimeout={300}
       transitionAppear
       component='div'
+      {...rest}
     >
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </CSSTransitionGroup>
   )
-}
-
-Slide.propTypes = {
-  content: PropTypes.node
 }
 
 export default Slide

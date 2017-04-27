@@ -4,8 +4,10 @@ import { debounce } from 'lodash'
 import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
 import CSS from './style.css'
 
-type SlideCodeProps = {
-  content: string
+type Props = {
+  key?: string,
+  content: string,
+  onClick: Function
 }
 
 type State = {
@@ -19,7 +21,7 @@ type State = {
 const SLIDE_ID: string = 'code-slide-content'
 
 class SlideCode extends PureComponent {
-  props: SlideCodeProps
+  props: Props
   state: State
 
   state = {
@@ -52,10 +54,10 @@ class SlideCode extends PureComponent {
   }, 200)
 
   render (): React$Element<any> {
-    const { content } = this.props
+    const { content, ...rest } = this.props
 
     return (
-      <div className={CSS.slide}>
+      <div className={CSS.slide} {...rest}>
         <div
           id={SLIDE_ID}
           className={CSS.code}

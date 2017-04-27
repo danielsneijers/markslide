@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/SlidesContainer renders correctly 1`] = `
+<div>
+  <ProgressBar
+    offset={66.66666666666667}
+  />
+  <Slide
+    content="<h1>Nice title</h1>
+  "
+    onClick={[Function]}
+  />
+</div>
+`;
