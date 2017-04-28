@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import SlideCode from 'components/SlideCode'
 import * as ViewportUtils from 'utils/viewport'
 
@@ -30,7 +30,10 @@ describe('components/SlideCode', () => {
   })
 
   it('renders correctly', () => {
-    expect(tree).toMatchSnapshot()
+    // use mount here so the ref is hit for coverage
+    const wrapper = mount(<SlideCode content={content} />)
+
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('checks if scaling is needed when component is mounted', () => {

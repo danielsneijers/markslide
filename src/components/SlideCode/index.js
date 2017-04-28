@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react'
 import { debounce } from 'lodash'
-import { elementFitsViewport, scaleElementToFit, getElementSize } from 'utils/viewport'
+import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
 import CSS from './style.css'
 
 type Props = {

@@ -1,6 +1,5 @@
 import {
   getElementSize,
-  memoizedGetElementSize,
   dimensionsFitViewport,
   elementOutOfBoundFraction,
   scaleToFit,
