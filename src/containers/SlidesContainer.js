@@ -29,7 +29,7 @@ class SlidesContainer extends PureComponent {
   }
 
   componentDidMount () {
-    window.addEventListener('click', this.handleClick)
+    this.container.addEventListener('click', this.handleClick)
     window.addEventListener('keydown', this.handleKeyDown)
   }
 
@@ -38,7 +38,7 @@ class SlidesContainer extends PureComponent {
   }
 
   componentWillUnMount () {
-    window.removeEventListener('click', this.handleClick)
+    this.container.removeEventListener('click', this.handleClick)
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 
@@ -55,6 +55,8 @@ class SlidesContainer extends PureComponent {
   }
 
   handleClick = (e) => {
+    e.preventDefault()
+
     this.navigate(NEXT)
   }
 
@@ -75,8 +77,6 @@ class SlidesContainer extends PureComponent {
   }
 
   navigate = throttle((direction) => {
-    console.log('%c yolo ', 'background-color:#f1c40f; color: white; font-weight: bold; padding: 4px 0;');
-    console.log(this)
     direction === PREV
       ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
       : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)
@@ -97,8 +97,7 @@ class SlidesContainer extends PureComponent {
     const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
     const content = parsedMarkdown[this.currentIndex - 1]
     const slideProps = {
-      key: `slide-${this.currentIndex}`,
-      onClick: this.handleClick
+      key: `slide-${this.currentIndex}`
     }
 
     return (

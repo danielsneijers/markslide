@@ -8,7 +8,6 @@ exports[`containers/SlidesContainer renders correctly 1`] = `
   <Slide
     content="<h1>Nice title</h1>
   "
-    onClick={[Function]}
   />
 </div>
 `;
