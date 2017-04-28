@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react'
 import { debounce } from 'lodash'
-import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
+import { elementFitsViewport, scaleElementToFit, getElementSize } from 'utils/viewport'
 import CSS from './style.css'
 
 type Props = {
@@ -22,6 +22,7 @@ const SLIDE_ID: string = 'code-slide-content'
 class SlideCode extends PureComponent {
   props: Props
   state: State
+  container: HTMLDivElement
 
   state = {
     style: {}
@@ -34,6 +35,9 @@ class SlideCode extends PureComponent {
   }
 
   componentWillReceiveProps () {
+    this.setState({
+      style: {}
+    })
     this.checkForScaling()
   }
 
@@ -42,19 +46,19 @@ class SlideCode extends PureComponent {
   }
 
   checkForScaling: Function = debounce(() => {
-    const wrapper = document.getElementById(SLIDE_ID)
+    const wrapper = this.container
     const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)
     const width = 90 / scaleFraction
 
     const style = {
-      transform: `scale(${scaleFraction}) translateY(0)`,
+      transform: `scale(${scaleFraction})`,
       position: 'absolute',
       width: `${width}%`,
       opacity: 1
     }
 
     this.setState({ style })
-  }, 200)
+  }, 100)
 
   render (): React$Element<any> {
     const { content, uniqueKey } = this.props
@@ -64,6 +68,7 @@ class SlideCode extends PureComponent {
         <div
           id={SLIDE_ID}
           className={CSS.code}
+          ref={(c) => { this.container = c }}
           style={{ opacity: 0, ...this.state.style }}
           dangerouslySetInnerHTML={{ __html: content }}
         />

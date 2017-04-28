@@ -1,6 +1,5 @@
 // @flow
 import { compose } from 'ramda'
-import { memoize } from 'lodash'
 
 type ElementDimensions = {
   width: number,
@@ -15,8 +14,6 @@ export const getElementSize = (element: HTMLElement): ElementDimensions => {
     height: Math.floor(height)
   }
 }
-
-export const memoizedGetElementSize: Function = memoize(getElementSize)
 
 export const dimensionsFitViewport = (elementDimensions: ElementDimensions): boolean => {
   const { width, height } = elementDimensions
@@ -39,5 +36,5 @@ export const scaleToFit = (outOfBoundFraction: ElementDimensions): number => {
   return width > height ? height : width
 }
 
-export const elementFitsViewport: Function = compose(dimensionsFitViewport, memoizedGetElementSize)
-export const scaleElementToFit: Function = compose(scaleToFit, elementOutOfBoundFraction, memoizedGetElementSize)
+export const elementFitsViewport: Function = compose(dimensionsFitViewport, getElementSize)
+export const scaleElementToFit: Function = compose(scaleToFit, elementOutOfBoundFraction, getElementSize)

@@ -71,7 +71,7 @@ describe('components/SlideCode', () => {
         style: {
           opacity: 1,
           position: 'absolute',
-          transform: 'scale(1) translateY(0)',
+          transform: 'scale(1)',
           width: '90%'
         }
       }
@@ -95,7 +95,7 @@ describe('components/SlideCode', () => {
       style: {
         opacity: 1,
         position: 'absolute',
-        transform: 'scale(0.5) translateY(0)',
+        transform: 'scale(0.5)',
         width: '180%'
       }
     }

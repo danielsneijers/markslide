@@ -37,22 +37,6 @@ describe('utils/viewport', () => {
     })
   })
 
-  describe('memoizedGetElementSize', () => {
-    it('returns dimensions of HTML Element', () => {
-      const div = createDiv()
-
-      expect(memoizedGetElementSize(div)).toEqual({ width: 597, height: 1627 })
-    })
-
-    it('returns different output with different input (test memoization implementation)', () => {
-      const div = createDiv()
-      const div2 = createDiv(150.2, 122.1)
-
-      expect(memoizedGetElementSize(div)).toEqual({ width: 597, height: 1627 })
-      expect(memoizedGetElementSize(div2)).toEqual({ width: 150, height: 122 })
-    })
-  })
-
   describe('dimensionsFitViewport', () => {
     it('returns true when element fits in window', () => {
       const dimensions = createDiv(500, 500).getBoundingClientRect()
