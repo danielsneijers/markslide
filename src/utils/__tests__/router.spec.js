@@ -17,18 +17,18 @@ const withRouterProps = {
 
 describe('utils/router', () => {
   describe('getFromRouterProps', () => {
-    test('returns value from router match params', () => {
+    it('returns value from router match params', () => {
       expect(getFromRouterProps(withRouterProps, 'foo')).toBe('some-text')
       expect(getFromRouterProps(withRouterProps, 'slide')).toBe(2)
     })
 
-    test('returns nothing if not prop doesn\'t exist', () => {
+    it('returns nothing if not prop doesn\'t exist', () => {
       expect(getFromRouterProps(withRouterProps, 'baz')).toBeUndefined()
     })
   })
 
   describe('getParamFromRouterProps', () => {
-    test('returns curried getFromRouterProps', () => {
+    it('returns curried getFromRouterProps', () => {
       const curriedGetFromProps = getParamFromRouterProps('foo')
 
       expect(curriedGetFromProps).toBeInstanceOf(Function)
@@ -38,7 +38,7 @@ describe('utils/router', () => {
   })
 
   describe('getSlideIndexFromProps', () => {
-    test('returns slide prop from router props', () => {
+    it('returns slide prop from router props', () => {
       expect(getSlideIndexFromProps(withRouterProps)).toBe(2)
     })
   })

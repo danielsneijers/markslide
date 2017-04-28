@@ -38,6 +38,10 @@ class SlideCode extends PureComponent {
     this.checkForScaling()
   }
 
+  componentWillUnMount () {
+    window.removeEventListener('resize', this.checkForScaling)
+  }
+
   checkForScaling = debounce(() => {
     const wrapper = document.getElementById(SLIDE_ID)
     const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)

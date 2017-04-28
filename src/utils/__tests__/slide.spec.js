@@ -8,7 +8,7 @@ describe('utils/slide', () => {
   const defaultSlide = '<h1>Some cool heading</h1>'
 
   describe('getSlideType', () => {
-    test('returns slide type based on content', () => {
+    it('returns slide type based on content', () => {
       expect(getSlideType('')).toBe('default')
       expect(getSlideType(defaultSlide)).toBe('default')
       expect(getSlideType(codeSlide)).toBe('code')
@@ -21,7 +21,7 @@ describe('utils/slide', () => {
       onClick: () => null
     }
 
-    test('returns slide component based on slide type', () => {
+    it('returns slide component based on slide type', () => {
       expect(getSlide(codeSlide, props)).toEqual(<SlideCode {...props} content={codeSlide} />)
       expect(getSlide(defaultSlide, props)).toEqual(<Slide {...props} content={defaultSlide} />)
     })

@@ -29,8 +29,8 @@ class SlidesContainer extends PureComponent {
   }
 
   componentDidMount () {
-    window.addEventListener('click', this.handleClick.bind(this))
-    window.addEventListener('keydown', this.handleKeyDown.bind(this))
+    window.addEventListener('click', this.handleClick)
+    window.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -38,8 +38,8 @@ class SlidesContainer extends PureComponent {
   }
 
   componentWillUnMount () {
-    window.removeEventListener('click', this.handleClick.bind(this))
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this))
+    window.removeEventListener('click', this.handleClick)
+    window.removeEventListener('keydown', this.handleKeyDown)
   }
 
   updateIndex (props) {
@@ -54,11 +54,11 @@ class SlidesContainer extends PureComponent {
     }
   }
 
-  handleClick (e) {
+  handleClick = (e) => {
     this.navigate(NEXT)
   }
 
-  handleKeyDown (e) {
+  handleKeyDown = (e) => {
     switch (e.keyCode) {
       case KEY_CODES.LEFT:
       case KEY_CODES.UP:
@@ -75,6 +75,8 @@ class SlidesContainer extends PureComponent {
   }
 
   navigate = throttle((direction) => {
+    console.log('%c yolo ', 'background-color:#f1c40f; color: white; font-weight: bold; padding: 4px 0;');
+    console.log(this)
     direction === PREV
       ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
       : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)

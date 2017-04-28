@@ -36,7 +36,7 @@ const html = [
 
 describe('utils/markdown', () => {
   describe('splitSlides', () => {
-    test('splits markdown by markdown HRs ("---")', () => {
+    it('splits markdown by markdown HRs ("---")', () => {
       const parsedContent = splitSlides(exampleMarkdown)
 
       expect(parsedContent.length).toBe(1)
@@ -51,14 +51,14 @@ describe('utils/markdown', () => {
   })
 
   describe('slidesCount', () => {
-    test('returns amount of slides in presentation', () => {
+    it('returns amount of slides in presentation', () => {
       expect(slidesCount(exampleMarkdown)).toBe(1)
       expect(slidesCount(exampleMarkdown2)).toBe(2)
     })
   })
 
   describe('parseSlides', () => {
-    test('converts map of markdown elements to html slides', () => {
+    it('converts map of markdown elements to html slides', () => {
       const slides = splitSlides(exampleMarkdown2)
 
       expect(parseSlides(slides)).toEqual(html)
@@ -66,7 +66,7 @@ describe('utils/markdown', () => {
   })
 
   describe('parse', () => {
-    test('converts raw markdown to html elements', () => {
+    it('converts raw markdown to html elements', () => {
       expect(parse(exampleMarkdown2)).toEqual(html)
     })
   })

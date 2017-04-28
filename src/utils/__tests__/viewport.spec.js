@@ -30,7 +30,7 @@ describe('utils/viewport', () => {
   })
 
   describe('getElementSize', () => {
-    test('returns dimensions of HTML Element', () => {
+    it('returns dimensions of HTML Element', () => {
       const div = createDiv()
 
       expect(getElementSize(div)).toEqual({ width: 597, height: 1627 })
@@ -38,13 +38,13 @@ describe('utils/viewport', () => {
   })
 
   describe('memoizedGetElementSize', () => {
-    test('returns dimensions of HTML Element', () => {
+    it('returns dimensions of HTML Element', () => {
       const div = createDiv()
 
       expect(memoizedGetElementSize(div)).toEqual({ width: 597, height: 1627 })
     })
 
-    test('returns different output with different input (test memoization implementation)', () => {
+    it('returns different output with different input (test memoization implementation)', () => {
       const div = createDiv()
       const div2 = createDiv(150.2, 122.1)
 
@@ -54,13 +54,13 @@ describe('utils/viewport', () => {
   })
 
   describe('dimensionsFitViewport', () => {
-    test('returns true when element fits in window', () => {
+    it('returns true when element fits in window', () => {
       const dimensions = createDiv(500, 500).getBoundingClientRect()
 
       expect(dimensionsFitViewport(dimensions)).toEqual(true)
     })
 
-    test('returns false when element doesn\'t fit in window', () => {
+    it('returns false when element doesn\'t fit in window', () => {
       const dimensions = createDiv(2000, 2000).getBoundingClientRect()
       const divTooWide = createDiv(2000, 10).getBoundingClientRect()
       const divTooTall = createDiv(10, 2000).getBoundingClientRect()
@@ -72,7 +72,7 @@ describe('utils/viewport', () => {
   })
 
   describe('elementOutOfBoundFraction', () => {
-    test('returns out of bounds percentage of width and height', () => {
+    it('returns out of bounds percentage of width and height', () => {
       const dimensions = createDiv(1200, 800).getBoundingClientRect()
 
       expect(elementOutOfBoundFraction(dimensions)).toEqual({ height: 0.96, width: 0.8533333333333334 })
@@ -80,13 +80,13 @@ describe('utils/viewport', () => {
   })
 
   describe('scaleToFit', () => {
-    test('returns fraction of width to scale when width offset is largest', () => {
+    it('returns fraction of width to scale when width offset is largest', () => {
       const dimensions = elementOutOfBoundFraction(createDiv(1200, 800).getBoundingClientRect())
 
       expect(scaleToFit(dimensions)).toBe(dimensions.width)
     })
 
-    test('returns fraction of width to scale when width offset is largest', () => {
+    it('returns fraction of width to scale when width offset is largest', () => {
       const dimensions = elementOutOfBoundFraction(createDiv(800, 1200).getBoundingClientRect())
 
       expect(scaleToFit(dimensions)).toBe(dimensions.height)
@@ -94,13 +94,13 @@ describe('utils/viewport', () => {
   })
 
   describe('elementFitsViewport', () => {
-    test('returns true when element fits viewport', () => {
+    it('returns true when element fits viewport', () => {
       const div = createDiv(200, 200)
 
       expect(elementFitsViewport(div)).toBe(true)
     })
 
-    test('returns false when element doesn\'t fit viewport', () => {
+    it('returns false when element doesn\'t fit viewport', () => {
       const div = createDiv()
 
       expect(elementFitsViewport(div)).toBe(false)
@@ -108,7 +108,7 @@ describe('utils/viewport', () => {
   })
 
   describe('scaleElementToFit', () => {
-    test('returns percentage of element to scale to fit viewport', () => {
+    it('returns percentage of element to scale to fit viewport', () => {
       const div = createDiv()
 
       expect(scaleElementToFit(div)).toBe(0.47203441917639827)

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import Slide from 'components/Slide'
 
 describe('components/Slide', () => {
-  test('renders correctly', () => {
+  it('renders correctly', () => {
     const content = <h1>Hello Test!</h1>
     const tree = shallow(<Slide content={content} />)
 
