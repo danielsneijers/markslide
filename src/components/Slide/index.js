@@ -4,12 +4,11 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import CSS from './style.css'
 
 type Props = {
-  key?: string,
-  content: string,
-  onClick: Function
+  uniqueKey: string,
+  content: string
 }
 
-const Slide = ({ content, ...rest }: Props) => {
+const Slide = ({ content, uniqueKey }: Props) => {
   return (
     <CSSTransitionGroup
       className={CSS.slide}
@@ -19,7 +18,7 @@ const Slide = ({ content, ...rest }: Props) => {
       transitionLeaveTimeout={300}
       transitionAppear
       component='div'
-      {...rest}
+      key={uniqueKey}
     >
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </CSSTransitionGroup>

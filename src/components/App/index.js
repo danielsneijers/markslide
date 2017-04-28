@@ -20,7 +20,7 @@ class App extends PureComponent {
    * Need to call the history.push() in a parent component of the
    * slides container to trigger a rerender
    */
-  navigateTo = (url) => {
+  navigateTo = (url: string) => {
     this.props.history.push(url)
   }
 

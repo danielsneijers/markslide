@@ -33,7 +33,7 @@ class SlidesContainer extends PureComponent {
     window.addEventListener('keydown', this.handleKeyDown)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps (nextProps: Props) {
     this.updateIndex(nextProps)
   }
 
@@ -42,7 +42,7 @@ class SlidesContainer extends PureComponent {
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 
-  updateIndex (props) {
+  updateIndex (props: Props) {
     this.currentIndex = parseInt(getSlideIndexFromProps(props))
 
     if (this.currentIndex > this.totalSlides) {
@@ -54,13 +54,13 @@ class SlidesContainer extends PureComponent {
     }
   }
 
-  handleClick = (e) => {
+  handleClick = (e: MouseEvent) => {
     e.preventDefault()
 
     this.navigate(NEXT)
   }
 
-  handleKeyDown = (e) => {
+  handleKeyDown = (e: KeyboardEvent) => {
     switch (e.keyCode) {
       case KEY_CODES.LEFT:
       case KEY_CODES.UP:
@@ -97,7 +97,7 @@ class SlidesContainer extends PureComponent {
     const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
     const content = parsedMarkdown[this.currentIndex - 1]
     const slideProps = {
-      key: `slide-${this.currentIndex}`
+      uniqueKey: `slide-${this.currentIndex}`
     }
 
     return (

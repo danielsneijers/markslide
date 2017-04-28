@@ -5,9 +5,8 @@ import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
 import CSS from './style.css'
 
 type Props = {
-  key?: string,
-  content: string,
-  onClick: Function
+  uniqueKey: string,
+  content: string
 }
 
 type State = {
@@ -42,7 +41,7 @@ class SlideCode extends PureComponent {
     window.removeEventListener('resize', this.checkForScaling)
   }
 
-  checkForScaling = debounce(() => {
+  checkForScaling: Function = debounce(() => {
     const wrapper = document.getElementById(SLIDE_ID)
     const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)
     const width = 90 / scaleFraction
@@ -58,10 +57,10 @@ class SlideCode extends PureComponent {
   }, 200)
 
   render (): React$Element<any> {
-    const { content, ...rest } = this.props
+    const { content, uniqueKey } = this.props
 
     return (
-      <div className={CSS.slide} {...rest}>
+      <div className={CSS.slide} key={uniqueKey}>
         <div
           id={SLIDE_ID}
           className={CSS.code}
