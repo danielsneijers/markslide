@@ -11,7 +11,6 @@ type Props = {
 const Slide = ({ content, uniqueKey }: Props) => {
   return (
     <CSSTransitionGroup
-      className={CSS.slide}
       transitionName='slide'
       transitionAppearTimeout={500}
       transitionEnterTimeout={500}
@@ -20,7 +19,10 @@ const Slide = ({ content, uniqueKey }: Props) => {
       component='div'
       key={uniqueKey}
     >
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div
+        className={CSS.slide}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </CSSTransitionGroup>
   )
 }

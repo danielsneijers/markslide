@@ -13,7 +13,7 @@ marked.setOptions({
 })
 ```
 ---
-<!-- loc: [1,2], [4,7] -->
+{:loc [1,2], [4,7] }
 ## code example
 ```javascript
 import Marked from 'marked'
@@ -75,7 +75,8 @@ About styles
 ---
 Global styles are the enemy
 ---
-[image of sass folder]
+{:background #16232A}
+![Sass folder structure](/images/sass.png)
 ---
 So… inline styles then?
 ---

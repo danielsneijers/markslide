@@ -2,7 +2,6 @@
 
 exports[`components/Slide renders correctly 1`] = `
 <CSSTransitionGroup
-  className="slide"
   component="div"
   transitionAppear={true}
   transitionAppearTimeout={500}
@@ -13,6 +12,7 @@ exports[`components/Slide renders correctly 1`] = `
   transitionName="slide"
 >
   <div
+    className="slide"
     dangerouslySetInnerHTML={
       Object {
         "__html": <h1>

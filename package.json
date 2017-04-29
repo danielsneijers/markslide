@@ -7,10 +7,11 @@
   "license": "MIT",
   "scripts": {
     "start": "run-s build serve",
-    "dev": "NODE_ENV=development webpack-dashboard -- webpack-dev-server --open",
-    "build": "run-p flow lint test clean && NODE_ENV=production webpack",
+    "dev": "yarn run copy-assets && NODE_ENV=development webpack-dashboard -- webpack-dev-server --open",
+    "build": "run-p flow lint test clean copy-assets && NODE_ENV=production webpack",
     "serve": "cd dist && serve -s",
     "clean": "rm -rf ./dist",
+    "copy-assets": "mkdir -p ./dist/images && cp -a ./config/images/. ./dist/images",
     "test": "jest --coverage --no-cache --config .jestrc",
     "test:watch": "jest --watch --config .jestrc",
     "test:snapshot": "jest --updateSnapshot --config .jestrc",

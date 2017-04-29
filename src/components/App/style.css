@@ -6,7 +6,20 @@ strong {
   font-weight: bold;
 }
 
+img {
+  max-height: 100vh;
+  max-width: 100%;
+}
+
 .wrapper {
   height: 100vh;
   width: 100%;
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+p img {
+  margin-bottom: -.41em;
 }
