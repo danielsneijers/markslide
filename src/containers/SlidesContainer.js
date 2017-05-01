@@ -24,7 +24,6 @@ class SlidesContainer extends PureComponent {
 
   componentWillMount () {
     this.totalSlides = slidesCount(MarkdownSheets)
-
     this.updateIndex(this.props)
   }
 
@@ -56,7 +55,6 @@ class SlidesContainer extends PureComponent {
 
   handleClick = (e: MouseEvent) => {
     e.preventDefault()
-
     this.navigate(NEXT)
   }
 
@@ -95,7 +93,7 @@ class SlidesContainer extends PureComponent {
   render () {
     const parsedMarkdown = parse(MarkdownSheets)
     const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
-    const content = parsedMarkdown[this.currentIndex - 1]
+    const { content = '' } = parsedMarkdown[this.currentIndex - 1] || {}
     const slideProps = {
       uniqueKey: `slide-${this.currentIndex}`
     }

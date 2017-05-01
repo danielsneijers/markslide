@@ -26,11 +26,11 @@ export const splitSlides = (content: string): Array<string> =>
 export const slidesCount = (content: string): number =>
   splitSlides(content).length
 
-export const parseSlides = (slides: Array<string>): Array<HTMLElement> =>
+export const parseSlideObjectsToHtml = (slides: Array<string>): Array<HTMLElement> =>
   slides.map((slide: string) =>
     Marked(slide, { renderer }))
 
-export const parse = compose(parseSlides, splitSlides)
+export const parse = compose(parseSlideObjectsToHtml, splitSlides)
 ```
 ---
 Hi I'm Daniel from <red>Blendle</red>
@@ -76,6 +76,7 @@ About styles
 Global styles are the enemy
 ---
 {:background #16232A}
+{:yolo heyhoi}
 ![Sass folder structure](/images/sass.png)
 ---
 So… inline styles then?

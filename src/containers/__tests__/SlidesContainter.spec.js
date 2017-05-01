@@ -14,15 +14,16 @@ let props, tree, instance
 
 describe('containers/SlidesContainer', () => {
   beforeAll(() => {
-    const content = MarkdownUtils.parse(mockSheets)
+    const parsedSlides = MarkdownUtils.parse(mockSheets)
+    const { content } = parsedSlides[0]
 
     MarkdownUtils.parse = jest.fn()
-    MarkdownUtils.parse.mockReturnValue(content)
+    MarkdownUtils.parse.mockReturnValue(parsedSlides)
     MarkdownUtils.slidesCount = jest.fn()
     MarkdownUtils.slidesCount.mockReturnValue(3)
 
     SlideUtils.getSlide = jest.fn()
-    SlideUtils.getSlide.mockReturnValue(<Slide content={content[0]} />)
+    SlideUtils.getSlide.mockReturnValue(<Slide content={content} />)
 
     RouterUtils.getSlideIndexFromProps = jest.fn()
     RouterUtils.getSlideIndexFromProps.mockReturnValue(1)

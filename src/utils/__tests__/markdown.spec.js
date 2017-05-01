@@ -1,7 +1,8 @@
 import {
   splitSlides,
   slidesCount,
-  parseSlides,
+  parseSlideObjectsToHtml,
+  parseSlidesToEnhancedObjects,
   parse
 } from '../markdown'
 
@@ -15,14 +16,15 @@ Some content
 - bullets
 - etc
 `
-const slide1 =
-`# Title
-Some content`
-const slide2 =
-`## New slide
+const slides = [
+  `# Title
+Some content`,
+  `## New slide
 - with list
 - bullets
 - etc`
+]
+
 const html = [
   '<h1>Title</h1>\n' +
   '<p>Some content</p>\n',
@@ -45,8 +47,8 @@ describe('utils/markdown', () => {
       const parsedContent2 = splitSlides(exampleMarkdown2)
 
       expect(parsedContent2.length).toBe(2)
-      expect(parsedContent2[0]).toEqual(expect.stringContaining(slide1))
-      expect(parsedContent2[1]).toEqual(expect.stringContaining(slide2))
+      expect(parsedContent2[0]).toEqual(expect.stringContaining(slides[0]))
+      expect(parsedContent2[1]).toEqual(expect.stringContaining(slides[1]))
     })
   })
 
@@ -57,17 +59,44 @@ describe('utils/markdown', () => {
     })
   })
 
-  describe('parseSlides', () => {
-    it('converts map of markdown elements to html slides', () => {
+  describe('parseSlidesToEnhancedObjects', () => {
+    it('converts map of markdown elements to slide objects', () => {
       const slides = splitSlides(exampleMarkdown2)
+      const result = parseSlidesToEnhancedObjects(slides)
 
-      expect(parseSlides(slides)).toEqual(html)
+      expect(result.length).toBe(slides.length)
+
+      result.forEach(({ content, meta }, index) => {
+        expect(content).toEqual(slides[index])
+        expect(meta).toEqual({})
+      })
+    })
+  })
+
+  describe('parseSlideObjectsToHtml', () => {
+    it('converts map slide objects to html slides with meta data', () => {
+      const slides = parseSlidesToEnhancedObjects(splitSlides(exampleMarkdown2))
+      const result = parseSlideObjectsToHtml(slides)
+
+      expect(result.length).toBe(html.length)
+
+      result.forEach(({ content, meta }, index) => {
+        expect(content).toEqual(html[index])
+        expect(meta).toEqual({})
+      })
     })
   })
 
   describe('parse', () => {
     it('converts raw markdown to html elements', () => {
-      expect(parse(exampleMarkdown2)).toEqual(html)
+      const result = parse(exampleMarkdown2)
+
+      expect(result.length).toBe(html.length)
+
+      result.forEach(({ content, meta }, index) => {
+        expect(content).toEqual(html[index])
+        expect(meta).toEqual({})
+      })
     })
   })
 })
