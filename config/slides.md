@@ -75,8 +75,7 @@ About styles
 ---
 Global styles are the enemy
 ---
-{:background #16232A}
-{:yolo heyhoi}
+{:class sassExample}
 ![Sass folder structure](/images/sass.png)
 ---
 So… inline styles then?

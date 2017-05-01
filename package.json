@@ -11,7 +11,7 @@
     "build": "run-p flow lint test clean copy-assets && NODE_ENV=production webpack",
     "serve": "cd dist && serve -s",
     "clean": "rm -rf ./dist",
-    "copy-assets": "mkdir -p ./dist/images && cp -a ./config/images/. ./dist/images",
+    "copy-assets": "mkdir -p ./dist/images && cp -a ./config/images/. ./dist/images && cp ./config/custom.css ./dist/custom.css",
     "test": "jest --coverage --no-cache --config .jestrc",
     "test:watch": "jest --watch --config .jestrc",
     "test:snapshot": "jest --updateSnapshot --config .jestrc",
@@ -25,6 +25,7 @@
     "src"
   ],
   "dependencies": {
+    "classnames": "^2.2.5",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "prismjs": "^1.6.0",

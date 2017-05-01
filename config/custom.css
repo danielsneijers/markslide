@@ -1,0 +1,14 @@
+/**
+ * This file will always be loaded after the theme is applied,
+ * so if you have any custom styles or theme styles you want
+ * to override, this is the place to be.
+ *
+ ***** IMAGES ******************************************************
+ * If you want to use images from the config folder, use /images
+ * as the base of you url, as they're server from dist/images in the
+ * build
+ */
+
+.sassExample {
+  background-color: #16232A;
+}

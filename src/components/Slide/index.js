@@ -1,14 +1,16 @@
 // @flow
 import React from 'react'
+import classNames from 'classnames'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import CSS from './style.css'
 
 type Props = {
   uniqueKey: string,
-  content: string
+  content: string,
+  className?: string
 }
 
-const Slide = ({ content, uniqueKey }: Props) => {
+const Slide = ({ content, uniqueKey, className }: Props) => {
   return (
     <CSSTransitionGroup
       transitionName='slide'
@@ -20,7 +22,7 @@ const Slide = ({ content, uniqueKey }: Props) => {
       key={uniqueKey}
     >
       <div
-        className={CSS.slide}
+        className={classNames(CSS.slide, className)}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </CSSTransitionGroup>
