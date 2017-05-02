@@ -95,7 +95,7 @@ class SlidesContainer extends PureComponent {
     const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
     const { content = '', meta = {} } = parsedMarkdown[this.currentIndex - 1] || {}
     const slideProps = {
-      uniqueKey: `slide-${this.currentIndex}`,
+      index: this.currentIndex,
       className: meta.class
     }
 

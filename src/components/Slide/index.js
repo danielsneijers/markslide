@@ -5,12 +5,19 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import CSS from './style.css'
 
 type Props = {
-  uniqueKey: string,
+  index: number,
   content: string,
   className?: string
 }
 
-const Slide = ({ content, uniqueKey, className }: Props) => {
+const Slide = ({ content, index, className }: Props) => {
+  const slideClasses = classNames(
+    CSS.slide,
+    className,
+    'regular-slide',
+    `slide${index}`
+  )
+
   return (
     <CSSTransitionGroup
       transitionName='slide'
@@ -19,10 +26,10 @@ const Slide = ({ content, uniqueKey, className }: Props) => {
       transitionLeaveTimeout={300}
       transitionAppear
       component='div'
-      key={uniqueKey}
+      key={`slide-${index}`}
     >
       <div
-        className={classNames(CSS.slide, className)}
+        className={slideClasses}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </CSSTransitionGroup>

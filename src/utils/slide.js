@@ -4,7 +4,8 @@ import Slide from 'components/Slide'
 import SlideCode from 'components/SlideCode'
 
 type SlideProps = {
-  uniqueKey: string
+  index: number,
+  className?: string
 }
 
 export const getSlideType = (content: string): string => {

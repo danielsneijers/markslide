@@ -1,12 +1,14 @@
 // @flow
 import React, { PureComponent } from 'react'
 import { debounce } from 'lodash'
+import classNames from 'classnames'
 import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
 import CSS from './style.css'
 
 type Props = {
-  uniqueKey: string,
-  content: string
+  index: number,
+  content: string,
+  className?: string
 }
 
 type State = {
@@ -61,10 +63,16 @@ class SlideCode extends PureComponent {
   }, 100)
 
   render (): React$Element<any> {
-    const { content, uniqueKey } = this.props
+    const { content, index, className } = this.props
+    const slideClasses = classNames(
+      CSS.slide,
+      className,
+      'code-slide',
+      `slide${index}`
+    )
 
     return (
-      <div className={CSS.slide} key={uniqueKey}>
+      <div className={slideClasses} key={`slide-${index}`}>
         <div
           id={SLIDE_ID}
           className={CSS.code}
