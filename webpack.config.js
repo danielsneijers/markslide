@@ -74,6 +74,12 @@ if (process.env.NODE_ENV === 'development') {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
+      new HtmlWebpackPlugin({
+        title,
+        template: 'template.ejs',
+        minify: { useShortDoctype: true },
+        hash: false
+      }),
       new DashboardPlugin()
     ]
   })
