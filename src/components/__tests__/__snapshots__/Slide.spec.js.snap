@@ -12,7 +12,7 @@ exports[`components/Slide renders correctly 1`] = `
   transitionName="slide"
 >
   <div
-    className="slide"
+    className="slide regular-slide slide1"
     dangerouslySetInnerHTML={
       Object {
         "__html": <h1>

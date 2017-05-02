@@ -3,9 +3,10 @@
 exports[`components/SlideCode renders correctly 1`] = `
 <SlideCode
   content="<pre><code class='lang-javascript'>console<span class='token punctuation'>.</span><span class='token function'>log</span><span class='token punctuation'>(</span><span class='token string'>'hello world!'</span><span class='token punctuation'>)</span></code></pre>"
+  index={1}
 >
   <div
-    className="slide"
+    className="slide code-slide slide1"
   >
     <div
       className="code"

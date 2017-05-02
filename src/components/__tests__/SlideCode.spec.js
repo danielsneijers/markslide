@@ -20,7 +20,7 @@ describe('components/SlideCode', () => {
   })
 
   beforeEach(() => {
-    tree = shallow(<SlideCode content={content} />)
+    tree = shallow(<SlideCode content={content} index={1} />)
     instance = tree.instance()
   })
 
@@ -31,14 +31,14 @@ describe('components/SlideCode', () => {
 
   it('renders correctly', () => {
     // use mount here so the ref is hit for coverage
-    const wrapper = mount(<SlideCode content={content} />)
+    const wrapper = mount(<SlideCode content={content} index={1} />)
 
     expect(wrapper).toMatchSnapshot()
   })
 
   it('checks if scaling is needed when component is mounted', () => {
     instance.checkForScaling = jest.fn()
-    expect(instance.checkForScaling).toHaveBeenCalledTimes(0)
+    expect(instance.checkForScaling).not.toHaveBeenCalled()
 
     instance.componentDidMount()
     expect(instance.checkForScaling).toHaveBeenCalledTimes(1)
@@ -60,7 +60,7 @@ describe('components/SlideCode', () => {
 
   it('checks if scaling is needed when component receives props', () => {
     instance.checkForScaling = jest.fn()
-    expect(instance.checkForScaling).toHaveBeenCalledTimes(0)
+    expect(instance.checkForScaling).not.toHaveBeenCalled()
 
     tree.setProps({ content })
     tree.update()
@@ -83,7 +83,7 @@ describe('components/SlideCode', () => {
       ViewportUtils.elementFitsViewport = jest.fn()
       ViewportUtils.elementFitsViewport.mockReturnValue(true)
 
-      expect(instance.setState).toHaveBeenCalledTimes(0)
+      expect(instance.setState).not.toHaveBeenCalled()
 
       instance.checkForScaling()
       jest.runAllTimers()
@@ -109,7 +109,7 @@ describe('components/SlideCode', () => {
     ViewportUtils.scaleElementToFit = jest.fn()
     ViewportUtils.scaleElementToFit.mockReturnValue(0.5)
 
-    expect(instance.setState).toHaveBeenCalledTimes(0)
+    expect(instance.setState).not.toHaveBeenCalled()
 
     instance.checkForScaling()
     jest.runAllTimers()
