@@ -33,6 +33,32 @@ ol {
   list-style: decimal;
 }
 
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+
+table tr {
+  background-color: #FFF;
+  border-top: 1px solid #C6CBD1;
+}
+
+table th,
+table td {
+  padding: 6px 13px;
+  border: 1px solid #DFE2E5;
+}
+
+table th {
+  text-align: left;
+  font-weight: 600;
+}
+
+table tr:nth-child(2n) {
+  background-color: #F6F8FA;
+}
+
 .wrapper {
   height: 100vh;
   width: 100%;
