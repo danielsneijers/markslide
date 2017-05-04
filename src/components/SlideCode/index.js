@@ -19,16 +19,13 @@ type State = {
   }
 }
 
-const SLIDE_ID: string = 'code-slide-content'
-
 class SlideCode extends PureComponent {
   props: Props
   state: State
   container: HTMLDivElement
 
-  state = {
-    style: {}
-  }
+  initialState = { style: {} }
+  state = this.initialState
 
   componentDidMount () {
     this.checkForScaling()
@@ -37,9 +34,7 @@ class SlideCode extends PureComponent {
   }
 
   componentWillReceiveProps () {
-    this.setState({
-      style: {}
-    })
+    this.setState(this.initialState)
     this.checkForScaling()
   }
 
@@ -49,14 +44,15 @@ class SlideCode extends PureComponent {
 
   checkForScaling: Function = debounce(() => {
     const wrapper = this.container
-    const scaleFraction = elementFitsViewport(wrapper) ? 1 : scaleElementToFit(wrapper)
-    const width = 90 / scaleFraction
+    const fitsViewport = elementFitsViewport(wrapper)
+    const scaleFraction = fitsViewport ? 1 : scaleElementToFit(wrapper)
+    const width = fitsViewport ? 'auto' : 90 / scaleFraction + '%'
 
     const style = {
       transform: `scale(${scaleFraction})`,
       position: 'absolute',
-      width: `${width}%`,
-      opacity: 1
+      opacity: 1,
+      width
     }
 
     this.setState({ style })
@@ -74,7 +70,6 @@ class SlideCode extends PureComponent {
     return (
       <div className={slideClasses} key={`slide-${index}`}>
         <div
-          id={SLIDE_ID}
           className={CSS.code}
           ref={(c) => { this.container = c }}
           style={{ opacity: 0, ...this.state.style }}

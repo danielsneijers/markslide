@@ -1,7 +1,9 @@
 // @flow
-import React from 'react'
+import React, { PureComponent } from 'react'
+import { debounce } from 'lodash'
 import classNames from 'classnames'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
 import CSS from './style.css'
 
 type Props = {
@@ -10,30 +12,82 @@ type Props = {
   className?: string
 }
 
-const Slide = ({ content, index, className }: Props) => {
-  const slideClasses = classNames(
-    CSS.slide,
-    className,
-    'regular-slide',
-    `slide${index}`
-  )
+type State = {
+  style: {
+    transform?: string,
+    position?: string,
+    width?: string
+  }
+}
 
-  return (
-    <CSSTransitionGroup
-      transitionName='slide'
-      transitionAppearTimeout={500}
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}
-      transitionAppear
-      component='div'
-      key={`slide-${index}`}
-    >
-      <div
+const SLIDE_ID: string = 'slide-content'
+
+class Slide extends PureComponent {
+  props: Props
+  state: State
+
+  initialState = { style: {} }
+  state = this.initialState
+
+  componentDidMount () {
+    this.checkForScaling()
+
+    window.addEventListener('resize', this.checkForScaling)
+  }
+
+  componentWillReceiveProps () {
+    this.setState(this.initialState)
+    this.checkForScaling()
+  }
+
+  componentWillUnMount () {
+    window.removeEventListener('resize', this.checkForScaling)
+  }
+
+  checkForScaling: Function = debounce(() => {
+    const wrapper = document.getElementById(SLIDE_ID)
+    const fitsViewport = elementFitsViewport(wrapper)
+    const scaleFraction = fitsViewport ? 1 : scaleElementToFit(wrapper)
+    const width = fitsViewport ? 'auto' : 90 / scaleFraction + '%'
+
+    const style = {
+      transform: `scale(${scaleFraction})`,
+      position: 'absolute',
+      opacity: 1,
+      width
+    }
+
+    this.setState({ style })
+  }, 100)
+
+  render () {
+    const { content, index, className } = this.props
+    const slideClasses = classNames(
+      CSS.slide,
+      className,
+      'regular-slide',
+      `slide${index}`
+    )
+
+    return (
+      <CSSTransitionGroup
+        transitionName='slide'
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+        transitionAppear
+        component='div'
         className={slideClasses}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    </CSSTransitionGroup>
-  )
+        key={`slide-${index}`}
+      >
+        <div
+          id={SLIDE_ID}
+          style={{ opacity: 0, ...this.state.style }}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </CSSTransitionGroup>
+    )
+  }
 }
 
 export default Slide

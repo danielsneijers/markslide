@@ -73,7 +73,7 @@ describe('components/SlideCode', () => {
           opacity: 1,
           position: 'absolute',
           transform: 'scale(1)',
-          width: '90%'
+          width: 'auto'
         }
       }
 
