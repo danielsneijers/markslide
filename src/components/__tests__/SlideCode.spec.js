@@ -15,8 +15,7 @@ describe('components/SlideCode', () => {
   })
 
   afterAll(() => {
-    window.addEventListener.mockReset()
-    window.removeEventListener.mockReset()
+    jest.resetAllMocks()
   })
 
   beforeEach(() => {
@@ -25,8 +24,7 @@ describe('components/SlideCode', () => {
   })
 
   afterEach(() => {
-    window.addEventListener.mockClear()
-    window.removeEventListener.mockClear()
+    jest.clearAllMocks()
   })
 
   it('renders correctly', () => {

@@ -33,13 +33,7 @@ describe('containers/SlidesContainer', () => {
   })
 
   afterAll(() => {
-    MarkdownUtils.parse.mockReset()
-    MarkdownUtils.slidesCount.mockReset()
-    SlideUtils.getSlide.mockReset()
-    RouterUtils.getSlideIndexFromProps.mockReset()
-
-    window.addEventListener.mockReset()
-    window.removeEventListener.mockReset()
+    jest.resetAllMocks()
   })
 
   beforeEach(() => {
@@ -49,12 +43,7 @@ describe('containers/SlidesContainer', () => {
   })
 
   afterEach(() => {
-    MarkdownUtils.parse.mockClear()
-    MarkdownUtils.slidesCount.mockClear()
-    SlideUtils.getSlide.mockClear()
-    RouterUtils.getSlideIndexFromProps.mockClear()
-    window.addEventListener.mockClear()
-    window.removeEventListener.mockClear()
+    jest.clearAllMocks()
   })
 
   it('renders correctly', () => {
