@@ -48,12 +48,13 @@ class Slide extends PureComponent {
     const wrapper = document.getElementById(SLIDE_ID)
     const fitsViewport = elementFitsViewport(wrapper)
     const scaleFraction = fitsViewport ? 1 : scaleElementToFit(wrapper)
+    const position = fitsViewport ? 'relative' : 'absolute'
     const width = fitsViewport ? 'auto' : 90 / scaleFraction + '%'
 
     const style = {
       transform: `scale(${scaleFraction})`,
-      position: 'absolute',
       opacity: 1,
+      position,
       width
     }
 

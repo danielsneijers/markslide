@@ -68,7 +68,7 @@ describe('components/Slide', () => {
       const setStateArguements = {
         style: {
           opacity: 1,
-          position: 'absolute',
+          position: 'relative',
           transform: 'scale(1)',
           width: 'auto'
         }

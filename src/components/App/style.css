@@ -6,20 +6,34 @@ strong {
   font-weight: bold;
 }
 
+p:last-of-type {
+  margin-bottom: 0;
+}
+
 img {
   max-height: 100vh;
   max-width: 100%;
 }
 
+p img {
+  margin-bottom: -.41em;
+}
+
+ul,
+ol {
+  list-style-position: outside;
+  margin-left: 1em;
+}
+
+ul {
+  list-style: circle;
+}
+
+ol {
+  list-style: decimal;
+}
+
 .wrapper {
   height: 100vh;
   width: 100%;
-}
-
-p:last-of-type {
-  margin-bottom: 0;
-}
-
-p img {
-  margin-bottom: -.41em;
 }
