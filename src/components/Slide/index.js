@@ -68,7 +68,7 @@ class Slide extends PureComponent {
       CSS.slide,
       className,
       'regular-slide',
-      `slide${index}`
+      `slide-${index}`
     )
 
     return (

@@ -6,7 +6,7 @@ exports[`components/SlideCode renders correctly 1`] = `
   index={1}
 >
   <div
-    className="slide code-slide slide1"
+    className="slide code-slide slide-1"
   >
     <div
       className="code"

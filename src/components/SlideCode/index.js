@@ -65,7 +65,7 @@ class SlideCode extends PureComponent {
       CSS.slide,
       className,
       'code-slide',
-      `slide${index}`
+      `slide-${index}`
     )
 
     return (

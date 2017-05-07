@@ -2,7 +2,7 @@
 
 exports[`components/Slide renders correctly 1`] = `
 <CSSTransitionGroup
-  className="slide regular-slide slide1"
+  className="slide regular-slide slide-1"
   component="div"
   transitionAppear={true}
   transitionAppearTimeout={500}
