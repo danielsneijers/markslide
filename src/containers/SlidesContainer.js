@@ -37,6 +37,7 @@ class SlidesContainer extends PureComponent {
   }
 
   componentWillUnMount () {
+    this.navigate.cancel()
     this.container.removeEventListener('click', this.handleClick)
     window.removeEventListener('keydown', this.handleKeyDown)
   }
@@ -74,7 +75,7 @@ class SlidesContainer extends PureComponent {
     }
   }
 
-  navigate = throttle((direction) => {
+  navigate = throttle((direction: string) => {
     direction === PREV
       ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
       : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)

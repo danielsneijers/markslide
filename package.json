@@ -20,7 +20,7 @@
     "flow": "flow status",
     "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -x 'src/**/*.spec.js' -t html -t json -t text",
     "lint": "run-p lint:*",
-    "lint:js": "eslint ./src",
+    "lint:js": "eslint ./src && eslint ./config",
     "lint:css": "stylelint ./src/**/*.css"
   },
   "moduleRoots": [

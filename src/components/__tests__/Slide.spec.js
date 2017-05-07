@@ -47,10 +47,18 @@ describe('components/Slide', () => {
   })
 
   it('removes the window resize listener when component is unmounted', () => {
+    instance.checkForScaling.cancel = jest.fn()
     instance.componentWillUnMount()
 
     expect(window.removeEventListener).toHaveBeenCalledTimes(1)
     expect(window.removeEventListener).toBeCalledWith('resize', instance.checkForScaling)
+  })
+
+  it('cancels debounced methods when component is unmounted', () => {
+    instance.checkForScaling.cancel = jest.fn()
+    instance.componentWillUnMount()
+
+    expect(instance.checkForScaling.cancel).toHaveBeenCalledTimes(1)
   })
 
   it('checks if scaling is needed when component receives props', () => {

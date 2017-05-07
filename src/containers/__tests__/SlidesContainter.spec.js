@@ -90,6 +90,17 @@ describe('containers/SlidesContainer', () => {
     expect(window.removeEventListener).toBeCalledWith('keydown', instance.handleKeyDown)
   })
 
+  it('cancels throttled navigation calls', () => {
+    instance.container = {
+      removeEventListener: jest.fn()
+    }
+
+    instance.navigate.cancel = jest.fn()
+    instance.componentWillUnMount()
+
+    expect(instance.navigate.cancel).toHaveBeenCalledTimes(1)
+  })
+
   it('updates the current index when it receives new props', () => {
     instance.updateIndex = jest.fn()
 

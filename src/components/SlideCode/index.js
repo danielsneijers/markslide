@@ -39,6 +39,7 @@ class SlideCode extends PureComponent {
   }
 
   componentWillUnMount () {
+    this.checkForScaling.cancel()
     window.removeEventListener('resize', this.checkForScaling)
   }
 

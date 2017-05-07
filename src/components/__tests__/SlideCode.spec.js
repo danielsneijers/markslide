@@ -56,6 +56,13 @@ describe('components/SlideCode', () => {
     expect(window.removeEventListener).toBeCalledWith('resize', instance.checkForScaling)
   })
 
+  it('cancels debounced methods when component is unmounted', () => {
+    instance.checkForScaling.cancel = jest.fn()
+    instance.componentWillUnMount()
+
+    expect(instance.checkForScaling.cancel).toHaveBeenCalledTimes(1)
+  })
+
   it('checks if scaling is needed when component receives props', () => {
     instance.checkForScaling = jest.fn()
     expect(instance.checkForScaling).not.toHaveBeenCalled()

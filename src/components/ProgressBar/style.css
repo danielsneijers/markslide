@@ -5,7 +5,8 @@
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: blue;
+  background-color: #56A9F6;
+  z-index: 1000;
   overflow: hidden;
   transition: transform .2s ease-out;
 }
