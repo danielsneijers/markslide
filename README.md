@@ -2,8 +2,17 @@
 
 Simple tool to convert your markdown to shiny presentations
 
+## Getting started
+The easiest way is to clone the repo, [install](#installation) the dependencies with npm/yarn, open your terminal in the root of this project and type:
+
+```bash
+$ yarn start
+```
+
+Take a look at the included demo presentation to get a quick grasp of the syntax and conventions. If you're ready to build your own presentation check out ['Editing your presentation'](#editing-your-presentation).
+
 ## Installation
-Make sure you have Node.js (v6+) and `yarn` running on your machine, cd to the root of this project and then
+Make sure you have Node.js (v6+) and [yarn](https://yarnpkg.com/lang/en/docs/install/) running on your machine, cd to the root of this project and then
 
 ```bash
 $ yarn
@@ -27,6 +36,15 @@ All standard and Github flavored markdown syntax is supported in your slide. The
 | ---------------------------------------- | ----------------------------------- |
 | `---` (preceded and followed by newline) | Creates a new slide                 |
 | `{:class foo}`                           | Add CSS class to the current slide  |
+
+### Using images
+Local images can be dropped in the `config/images` folder and used like
+
+```markdown
+[!inline-image](/images/foo.png)
+```
+
+External images can be used the same way with absolute urls. If you need more control, consider using CSS by adding a class to your slide as described in [Syntax](#syntax).
 
 ### Controls
 | Key         | Function         |
