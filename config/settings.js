@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'MD Slides',
+  title: 'Markslide',
   progressBar: true,
   theme: 'default',
   colors: {
