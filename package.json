@@ -1,5 +1,5 @@
 {
-  "name": "presenter",
+  "name": "md-slides",
   "version": "1.0.0",
   "description": "Create simple presentations in markdown",
   "main": "index.js",

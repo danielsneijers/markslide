@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Presenter',
+  title: 'MD Slides',
   progressBar: true,
   theme: 'default',
   colors: {

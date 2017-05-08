@@ -1,6 +1,6 @@
-# Presenter
+# MD Slides
 
-Simple tool to convert your markdown to shiny presentations
+A simple tool to convert your markdown to shiny presentations. Why? First of all, all the existing tools I tested were missing some features I'd like, or the exported slides were just not polished enough for my taste, or the development experience wasn't to my likings. Almost sounds like a 'not invented here' excuse, but alas, I decided to finally ship an open source project after working on this for a couple of weeks.
 
 ## Getting started
 The easiest way is to clone the repo, [install](#installation) the dependencies with npm/yarn, open your terminal in the root of this project and type:
