@@ -1,95 +1,171 @@
-/*
-
-Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-
-base:    #282c34
-mono-1:  #abb2bf
-mono-2:  #818896
-mono-3:  #5c6370
-hue-1:   #56b6c2
-hue-2:   #61aeee
-hue-3:   #c678dd
-hue-4:   #98c379
-hue-5:   #e06c75
-hue-5-2: #be5046
-hue-6:   #d19a66
-hue-6-2: #e6c07b
-
-*/
-:global .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #abb2bf;
-  background: #282c34;
+/* stylelint-disable selector-class-pattern, selector-max-compound-selectors */
+html,
+body {
+  font-size: 1.5em;
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif; /* stylelint-disable-line max-line-length */
+  line-height: 1.5em;
 }
 
-:global .hljs-comment,
-:global .hljs-quote {
-  color: #5c6370;
-  font-style: italic;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  line-height: 1.2em;
 }
 
-:global .hljs-doctag,
-:global .hljs-keyword,
-:global .hljs-formula {
-  color: #c678dd;
-}
-
-:global .hljs-section,
-:global .hljs-name,
-:global .hljs-selector-tag,
-:global .hljs-deletion,
-:global .hljs-subst {
-  color: #e06c75;
-}
-
-:global .hljs-literal {
-  color: #56b6c2;
-}
-
-:global .hljs-string,
-:global .hljs-regexp,
-:global .hljs-addition,
-:global .hljs-attribute,
-:global .hljs-meta-string {
-  color: #98c379;
-}
-
-:global .hljs-built_in,
-:global .hljs-class .hljs-title {
-  color: #e6c07b;
-}
-
-:global .hljs-attr,
-:global .hljs-variable,
-:global .hljs-template-variable,
-:global .hljs-type,
-:global .hljs-selector-class,
-:global .hljs-selector-attr,
-:global .hljs-selector-pseudo,
-:global .hljs-number {
-  color: #d19a66;
-}
-
-:global .hljs-symbol,
-:global .hljs-bullet,
-:global .hljs-link,
-:global .hljs-meta,
-:global .hljs-selector-id,
-:global .hljs-title {
-  color: #61aeee;
-}
-
-:global .hljs-emphasis {
-  font-style: italic;
-}
-
-:global .hljs-strong {
+h1 {
+  font-size: 2.441em;
   font-weight: bold;
 }
 
-:global .hljs-link {
+h2 {
+  font-size: 1.953em;
+}
+
+h3 {
+  font-size: 1.563em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.5em;
+  font-size: 1.953em;
+}
+
+small {
+  color: #A7AAA9;
+  font-size: .7em;
+}
+
+/*
+ * Prism code highlight styles
+ */
+code,
+pre {
+  color: #C5C8C6;
+  text-shadow: 0 1px rgba(0, 0, 0, .3);
+  font-family: "Fira Code", Monaco, Consolas, 'Courier New', Courier, monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre {
+  padding: 0 .2em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: .3em;
+}
+
+:global .token.comment,
+:global .token.prolog,
+:global .token.doctype,
+:global .token.cdata {
+  color: #7C7C7C;
+}
+
+:global .token.punctuation {
+  color: #C5C8C6;
+}
+
+.namespace {
+  opacity: .7;
+}
+
+:global .token.property,
+:global .token.keyword,
+:global .token.tag {
+  color: #96CBFE;
+}
+
+:global .token.class-name {
+  color: #FFFFB6;
   text-decoration: underline;
+}
+
+:global .token.boolean,
+:global .token.constant {
+  color: #9C9;
+}
+
+:global .token.symbol,
+:global .token.deleted {
+  color: #F92672;
+}
+
+:global .token.number {
+  color: #FF73FD;
+}
+
+:global .token.selector,
+:global .token.attr-name,
+:global .token.string,
+:global .token.char,
+:global .token.builtin,
+:global .token.inserted {
+  color: #A8FF60;
+}
+
+:global .token.variable {
+  color: #C6C5FE;
+}
+
+:global .token.operator {
+  color: #EDEDED;
+}
+
+:global .token.entity {
+  color: #FFFFB6;
+}
+
+:global .token.url {
+  color: #96CBFE;
+}
+
+:global .language-css .token.string,
+:global .style .token.string {
+  color: #87C38A;
+}
+
+:global .token.atrule,
+:global .token.attr-value {
+  color: #F9EE98;
+}
+
+:global .token.function {
+  color: #DAD085;
+}
+
+:global .token.regex {
+  color: #E9C062;
+}
+
+:global .token.important {
+  color: #FD971F;
+}
+
+:global .token.important,
+:global .token.bold {
+  font-weight: bold;
+}
+
+:global .token.italic {
+  font-style: italic;
+}
+
+:global .token.entity {
+  cursor: help;
 }
