@@ -4,6 +4,4 @@ node_js:
   - "7"
 cache: yarn
 after_success:
-  - printf "\033[0;32m Test passed, trying to build\n"
   - yarn run clean && yarn run copy-assets && yarn run build:production
-  - printf "\033[0;32m Build succeed\n"
