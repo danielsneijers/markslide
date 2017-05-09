@@ -4,6 +4,6 @@ node_js:
   - "7"
 cache: yarn
 after_success:
-  - test $TRAVIS_TEST_RESULT = 0 && echo "Tests Passed, building project"
+  - printf "\033[0;32m Test passed, trying to build\n"
   - yarn run clean && yarn run copy-assets && yarn run build:production
-  - echo "Build succeeded"
+  - printf "\033[0;32m Build succeed\n"
