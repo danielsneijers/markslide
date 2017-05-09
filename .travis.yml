@@ -1,0 +1,7 @@
+language: node_js
+env:
+  - test
+node_js:
+  - "6"
+  - "7"
+cache: yarn
