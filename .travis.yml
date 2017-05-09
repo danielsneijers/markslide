@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "6"
+  - "7"
+cache: yarn
+after_success:
+  - yarn run clean && yarn run copy-assets && yarn run build:production
