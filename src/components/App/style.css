@@ -59,6 +59,32 @@ table tr:nth-child(2n) {
   background-color: #F6F8FA;
 }
 
+pre code {
+  counter-reset: line;
+  margin-left: 2em;
+  /*border-left: 1px solid #DDD;*/
+  display: inline-block;
+
+  & > span {
+    padding-left: 1em;
+    min-height: 1.1em;
+    display: inline-block;
+  }
+
+  & > span:before {
+    counter-increment: line;
+    content: counter(line) ".";
+    text-align: right;
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 1em;
+    padding: 0 .5em;
+    margin-right: .5em;
+    color: #888;
+  }
+}
+
 .wrapper {
   height: 100vh;
   width: 100%;
