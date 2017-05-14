@@ -6,6 +6,16 @@ export type SlideWithMetaData = {
   meta: { }
 }
 
+export type MetaData = {
+  class?: string,
+  loc?: string
+}
+
+export type LocMetaData = {
+  class?: string,
+  loc?: Array<Array<number>>
+}
+
 const META_REGEX = /{:.*}/g
 
 export const findMetaDataInContent = (slide: string): Array<string> =>
@@ -35,5 +45,17 @@ export const separateContentAndMetaData = (slide: string): SlideWithMetaData => 
   return {
     content: contentWithOutMetaData(slide),
     meta: extractAndConvertMetaData(slide)
+  }
+}
+
+export const parseLocFromMetaData = (metaData: MetaData): LocMetaData => {
+  if (!metaData.loc) {
+    return {}
+  }
+
+  try {
+    return { loc: JSON.parse(`[${metaData.loc}]`) }
+  } catch (e) {
+    return {}
   }
 }

@@ -8,7 +8,8 @@ import CSS from './style.css'
 type Props = {
   index: number,
   content: string,
-  className?: string
+  className?: string,
+  loc?: Array<Array<number>>
 }
 
 type State = {
@@ -71,6 +72,7 @@ class SlideCode extends PureComponent {
     return (
       <div className={slideClasses} key={`slide-${index}`}>
         <div
+          key={Math.random()}
           className={CSS.code}
           ref={(c) => { this.container = c }}
           style={{ opacity: 0, ...this.state.style }}
