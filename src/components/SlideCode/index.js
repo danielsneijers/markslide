@@ -8,8 +8,7 @@ import CSS from './style.css'
 type Props = {
   index: number,
   content: string,
-  className?: string,
-  loc?: Array<Array<number>>
+  className?: string
 }
 
 type State = {
