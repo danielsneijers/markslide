@@ -22,7 +22,7 @@ export function highlightWithPrism (code: string, lang: string): string {
 
 export const wrapRowsInSpan = (text: string): string => {
   return text.split(/\n/)
-    .map((line) => `<span className='code-row'>${line}</span>\n`)
+    .map((line) => `<span class='code-row'>${line}</span>\n`)
     .join('')
 }
 
