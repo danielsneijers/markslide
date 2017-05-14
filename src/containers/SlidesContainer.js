@@ -7,6 +7,7 @@ import MarkdownSheets from 'config/slides.md'
 import { parse, slidesCount } from 'utils/markdown'
 import { getSlideIndexFromProps } from 'utils/router'
 import { getProgressBar } from 'utils/settings'
+import { parseLocFromMetaData } from 'utils/metaData'
 import { getSlide } from 'utils/slide'
 
 type Props = {
@@ -97,7 +98,8 @@ class SlidesContainer extends PureComponent {
     const { content = '', meta = {} } = parsedMarkdown[this.currentIndex - 1] || {}
     const slideProps = {
       index: this.currentIndex,
-      className: meta.class
+      className: meta.class,
+      ...parseLocFromMetaData(meta)
     }
 
     return (

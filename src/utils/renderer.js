@@ -14,7 +14,16 @@ export function highlightWithPrism (code: string, lang: string): string {
     'right-trim': false
   })
 
-  return highlight(normalizedCode, Prism.languages[lang])
+  return wrapRowsInSpan(highlight(
+    normalizedCode,
+    Prism.languages[lang]
+  ))
+}
+
+export const wrapRowsInSpan = (text: string): string => {
+  return text.split(/\n/)
+    .map((line) => `<span class='code-row'>${line}</span>\n`)
+    .join('')
 }
 
 export const enhanceTextWithHeaders = (text: string, level: number = 1): string => {

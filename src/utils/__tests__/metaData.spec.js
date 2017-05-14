@@ -3,7 +3,8 @@ import {
   convertMetaDataMatchesToMetaObject,
   extractAndConvertMetaData,
   contentWithOutMetaData,
-  separateContentAndMetaData
+  separateContentAndMetaData,
+  parseLocFromMetaData
 } from '../metaData'
 
 const strings = [
@@ -12,7 +13,7 @@ const strings = [
   `awesome paragraph
    {:class custom-class}`,
   `{:class custom-class}
-   {:loc [1,2]}
+   {:loc [1,2], [34,36]}
    slide with multiple meta`,
   `no metadata`,
   '{foo}'
@@ -21,7 +22,7 @@ const strings = [
 const matches = [
   ['{:class custom-class}'],
   ['{:class custom-class}'],
-  ['{:class custom-class}', '{:loc [1,2]}'],
+  ['{:class custom-class}', '{:loc [1,2], [34,36]}'],
   [],
   []
 ]
@@ -29,7 +30,7 @@ const matches = [
 const objects = [
   { class: 'custom-class' },
   { class: 'custom-class' },
-  { class: 'custom-class', loc: '[1,2]' },
+  { class: 'custom-class', loc: '[1,2], [34,36]' },
   {},
   {}
 ]
@@ -84,6 +85,33 @@ describe('utils/metaData', () => {
         }
 
         expect(separateContentAndMetaData(string)).toEqual(expectedResult)
+      })
+    })
+  })
+
+  describe('parseLocFromMetaData', () => {
+    it('converts loc meta data from string to array of numbers', () => {
+      const expectedResult = { loc: [[1, 2], [34, 36]] }
+
+      expect(parseLocFromMetaData(objects[2])).toEqual(expectedResult)
+    })
+
+    it('returns an empty object when no loc metadata is present', () => {
+      expect(parseLocFromMetaData(objects[0])).toEqual({})
+      expect(parseLocFromMetaData(objects[1])).toEqual({})
+      expect(parseLocFromMetaData(objects[3])).toEqual({})
+      expect(parseLocFromMetaData(objects[4])).toEqual({})
+    })
+
+    it('returns an empty object when no valid JSON is present', () => {
+      const invalidData = [
+        { loc: '[1,..2], [34,36]' },
+        { loc: '{[1,2], [34,36]' },
+        { loc: '1,2**, #34,36' }
+      ]
+
+      invalidData.forEach((input) => {
+        expect(parseLocFromMetaData(input)).toEqual({})
       })
     })
   })

@@ -1,5 +1,6 @@
 import {
   highlightWithPrism,
+  wrapRowsInSpan,
   enhanceTextWithHeaders,
   enhanceTextWithParagraph,
   enhanceTextWithColor
@@ -11,9 +12,20 @@ describe('utils/renderer', () => {
   describe('highlightWithPrism', () => {
     it('returns text with indentation', () => {
       const code = 'console.log(\'log\')' + '  console.log(\'with indent\')'
-      const parsedCode = "console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'log'</span><span class=\"token punctuation\">)</span>  console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'with indent'</span><span class=\"token punctuation\">)</span>"
+      const parsedCode = "<span class='code-row'>console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'log'</span><span class=\"token punctuation\">)</span>  console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'with indent'</span><span class=\"token punctuation\">)</span></span>\n"
 
       expect(highlightWithPrism(code, 'javascript')).toBe(parsedCode)
+    })
+  })
+
+  describe('wrapRowsInSpan', () => {
+    it('wraps each newline in a span with highlighting classes', () => {
+      const text = 'foo\nbar\nbaz'
+      const expectedResult = '<span class=\'code-row\'>foo</span>\n' +
+        '<span class=\'code-row\'>bar</span>\n' +
+        '<span class=\'code-row\'>baz</span>\n'
+
+      expect(wrapRowsInSpan(text)).toBe(expectedResult)
     })
   })
 
