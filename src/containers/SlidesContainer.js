@@ -97,7 +97,8 @@ class SlidesContainer extends PureComponent {
     const { content = '', meta = {} } = parsedMarkdown[this.currentIndex - 1] || {}
     const slideProps = {
       index: this.currentIndex,
-      className: meta.class
+      className: meta.class,
+      ...parseLocFromMetaData(meta)
     }
 
     return (
