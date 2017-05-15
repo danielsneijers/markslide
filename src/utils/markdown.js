@@ -7,7 +7,7 @@ import renderer from 'utils/renderer'
 
 type ParsedSlideWithMetaData = {
   content: HTMLElement,
-  meta: { }
+  meta: {}
 }
 
 export const splitSlides = (content: string): Array<string> =>
@@ -16,10 +16,13 @@ export const splitSlides = (content: string): Array<string> =>
 export const slidesCount = (content: string): number =>
   splitSlides(content).length
 
-export const parseSlidesToEnhancedObjects = (slides: Array<string>): Array<SlideWithMetaData> =>
-  slides.map(separateContentAndMetaData)
+export const parseSlidesToEnhancedObjects = (
+  slides: Array<string>
+): Array<SlideWithMetaData> => slides.map(separateContentAndMetaData)
 
-export const parseSlideObjectsToHtml = (slides: Array<SlideWithMetaData>): Array<ParsedSlideWithMetaData> =>
+export const parseSlideObjectsToHtml = (
+  slides: Array<SlideWithMetaData>
+): Array<ParsedSlideWithMetaData> =>
   slides.map(({ content, meta }: SlideWithMetaData) => {
     return { content: Marked(content, { renderer }), meta }
   })

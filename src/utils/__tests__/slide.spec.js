@@ -22,8 +22,12 @@ describe('utils/slide', () => {
     }
 
     it('returns slide component based on slide type', () => {
-      expect(getSlide(codeSlide, props)).toEqual(<SlideCode {...props} content={codeSlide} />)
-      expect(getSlide(defaultSlide, props)).toEqual(<Slide {...props} content={defaultSlide} />)
+      expect(getSlide(codeSlide, props)).toEqual(
+        <SlideCode {...props} content={codeSlide} />
+      )
+      expect(getSlide(defaultSlide, props)).toEqual(
+        <Slide {...props} content={defaultSlide} />
+      )
     })
   })
 })

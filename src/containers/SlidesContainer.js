@@ -78,8 +78,10 @@ class SlidesContainer extends PureComponent {
 
   navigate = throttle((direction: string) => {
     direction === PREV
-      ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
-      : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)
+      ? this.currentIndex > 1 &&
+          this.props.navigateTo(`/${this.currentIndex - 1}`)
+      : this.currentIndex < this.totalSlides &&
+          this.props.navigateTo(`/${this.currentIndex + 1}`)
   }, 200)
 
   enterFullScreen (elem: HTMLDivElement) {
@@ -94,8 +96,12 @@ class SlidesContainer extends PureComponent {
 
   render () {
     const parsedMarkdown = parse(MarkdownSheets)
-    const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
-    const { content = '', meta = {} } = parsedMarkdown[this.currentIndex - 1] || {}
+    const progressBarProps = {
+      offset: (1 - this.currentIndex / this.totalSlides) * 100
+    }
+    const { content = '', meta = {} } = parsedMarkdown[
+      this.currentIndex - 1
+    ] || {}
     const slideProps = {
       index: this.currentIndex,
       className: meta.class,
@@ -103,7 +109,11 @@ class SlidesContainer extends PureComponent {
     }
 
     return (
-      <div ref={(c) => { this.container = c }}>
+      <div
+        ref={c => {
+          this.container = c
+        }}
+      >
         {getProgressBar(progressBarProps)}
         {getSlide(content, slideProps)}
       </div>

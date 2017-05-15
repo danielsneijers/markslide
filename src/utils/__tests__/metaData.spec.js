@@ -55,7 +55,9 @@ describe('utils/metaData', () => {
   describe('convertMetaDataMatchesToMetaObject', () => {
     it('returns javascript objects from parsed meta data strings', () => {
       matches.forEach((match, index) => {
-        expect(convertMetaDataMatchesToMetaObject(match)).toEqual(objects[index])
+        expect(convertMetaDataMatchesToMetaObject(match)).toEqual(
+          objects[index]
+        )
       })
     })
   })
@@ -110,7 +112,7 @@ describe('utils/metaData', () => {
         { loc: '1,2**, #34,36' }
       ]
 
-      invalidData.forEach((input) => {
+      invalidData.forEach(input => {
         expect(parseLocFromMetaData(input)).toEqual({})
       })
     })

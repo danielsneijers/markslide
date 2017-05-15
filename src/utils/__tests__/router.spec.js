@@ -22,7 +22,7 @@ describe('utils/router', () => {
       expect(getFromRouterProps(withRouterProps, 'slide')).toBe(2)
     })
 
-    it('returns nothing if not prop doesn\'t exist', () => {
+    it("returns nothing if not prop doesn't exist", () => {
       expect(getFromRouterProps(withRouterProps, 'baz')).toBeUndefined()
     })
   })

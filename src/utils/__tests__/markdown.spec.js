@@ -26,14 +26,13 @@ Some content`,
 ]
 
 const html = [
-  '<h1>Title</h1>\n' +
-  '<p>Some content</p>\n',
+  '<h1>Title</h1>\n' + '<p>Some content</p>\n',
   '<h2>New slide</h2>\n' +
-  '<ul>\n' +
-  '<li>with list</li>\n' +
-  '<li>bullets</li>\n' +
-  '<li>etc</li>\n' +
-  '</ul>\n'
+    '<ul>\n' +
+    '<li>with list</li>\n' +
+    '<li>bullets</li>\n' +
+    '<li>etc</li>\n' +
+    '</ul>\n'
 ]
 
 describe('utils/markdown', () => {
