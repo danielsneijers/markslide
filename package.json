@@ -20,16 +20,21 @@
     "flow": "flow status",
     "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -x 'src/**/*.spec.js' -t html -t json -t text",
     "lint": "run-p lint:*",
-    "lint:js": "eslint ./src && eslint ./config",
+    "lint:js": "eslint ./src --fix && eslint ./config --fix",
     "lint:css": "stylelint ./src/**/*.css",
-    "format": "prettier-standard 'src/**/*.js'",
+    "format": "prettier --write --no-semi --single-quote 'src/**/*.js' && prettier --write --no-semi --single-quote 'config/**/*.js' && yarn run lint:js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
     "linters": {
       "src/**/*.js": [
-        "prettier --write",
-        "standard --fix",
+        "prettier --write --single-quote",
+        "eslint --fix",
+        "git add"
+      ],
+      "config/**/*.js": [
+        "prettier --write --single-quote",
+        "eslint --fix",
         "git add"
       ]
     }
