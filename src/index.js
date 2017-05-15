@@ -13,10 +13,7 @@ const tree = (Component, Router) => (
 )
 
 const render = (Component, Router) => {
-  ReactDOM.render(
-    tree(Component, Router),
-    document.getElementById('root')
-  )
+  ReactDOM.render(tree(Component, Router), document.getElementById('root'))
 }
 
 render(App, BrowserRouter)

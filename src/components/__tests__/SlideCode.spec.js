@@ -46,14 +46,20 @@ describe('components/SlideCode', () => {
     instance.componentDidMount()
 
     expect(window.addEventListener).toHaveBeenCalledTimes(1)
-    expect(window.addEventListener).toBeCalledWith('resize', instance.checkForScaling)
+    expect(window.addEventListener).toBeCalledWith(
+      'resize',
+      instance.checkForScaling
+    )
   })
 
   it('removes the window resize listener when component is unmounted', () => {
     instance.componentWillUnMount()
 
     expect(window.removeEventListener).toHaveBeenCalledTimes(1)
-    expect(window.removeEventListener).toBeCalledWith('resize', instance.checkForScaling)
+    expect(window.removeEventListener).toBeCalledWith(
+      'resize',
+      instance.checkForScaling
+    )
   })
 
   it('cancels debounced methods when component is unmounted', () => {
@@ -74,7 +80,7 @@ describe('components/SlideCode', () => {
   })
 
   describe('checkForScaling', () => {
-    it('doesn\'t apply scaling when content fits viewport', () => {
+    it("doesn't apply scaling when content fits viewport", () => {
       const setStateArguements = {
         style: {
           opacity: 1,
@@ -98,7 +104,7 @@ describe('components/SlideCode', () => {
     })
   })
 
-  it('applies scaling when content doesn\'t fit viewport', () => {
+  it("applies scaling when content doesn't fit viewport", () => {
     const setStateArguements = {
       style: {
         opacity: 1,

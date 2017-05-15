@@ -70,10 +70,16 @@ describe('containers/SlidesContainer', () => {
     instance.componentDidMount()
 
     expect(instance.container.addEventListener).toHaveBeenCalledTimes(1)
-    expect(instance.container.addEventListener).toBeCalledWith('click', instance.handleClick)
+    expect(instance.container.addEventListener).toBeCalledWith(
+      'click',
+      instance.handleClick
+    )
 
     expect(window.addEventListener).toHaveBeenCalledTimes(1)
-    expect(window.addEventListener).toBeCalledWith('keydown', instance.handleKeyDown)
+    expect(window.addEventListener).toBeCalledWith(
+      'keydown',
+      instance.handleKeyDown
+    )
   })
 
   it('removes event listeners when component unmounts', () => {
@@ -84,10 +90,16 @@ describe('containers/SlidesContainer', () => {
     instance.componentWillUnMount()
 
     expect(instance.container.removeEventListener).toHaveBeenCalledTimes(1)
-    expect(instance.container.removeEventListener).toBeCalledWith('click', instance.handleClick)
+    expect(instance.container.removeEventListener).toBeCalledWith(
+      'click',
+      instance.handleClick
+    )
 
     expect(window.removeEventListener).toHaveBeenCalledTimes(1)
-    expect(window.removeEventListener).toBeCalledWith('keydown', instance.handleKeyDown)
+    expect(window.removeEventListener).toBeCalledWith(
+      'keydown',
+      instance.handleKeyDown
+    )
   })
 
   it('cancels throttled navigation calls', () => {
@@ -128,7 +140,9 @@ describe('containers/SlidesContainer', () => {
       RouterUtils.getSlideIndexFromProps.mockReturnValue(5)
       instance.updateIndex(props)
 
-      expect(instance.props.navigateTo).toHaveBeenCalledWith(`/${MarkdownUtils.slidesCount()}`)
+      expect(instance.props.navigateTo).toHaveBeenCalledWith(
+        `/${MarkdownUtils.slidesCount()}`
+      )
     })
 
     it('navigates to first slide if index is below zero', () => {
@@ -162,14 +176,11 @@ describe('containers/SlidesContainer', () => {
 
   describe('handleKeyDown', () => {
     it('navigates to previous slide with left and up', () => {
-      const events = [
-        { keyCode: KEY_CODES.LEFT },
-        { keyCode: KEY_CODES.UP }
-      ]
+      const events = [{ keyCode: KEY_CODES.LEFT }, { keyCode: KEY_CODES.UP }]
 
       instance.navigate = jest.fn()
 
-      events.forEach((e) => {
+      events.forEach(e => {
         instance.handleKeyDown(e)
       })
 
@@ -179,14 +190,11 @@ describe('containers/SlidesContainer', () => {
     })
 
     it('navigates to previous slide with left and up', () => {
-      const events = [
-        { keyCode: KEY_CODES.RIGHT },
-        { keyCode: KEY_CODES.DOWN }
-      ]
+      const events = [{ keyCode: KEY_CODES.RIGHT }, { keyCode: KEY_CODES.DOWN }]
 
       instance.navigate = jest.fn()
 
-      events.forEach((e) => {
+      events.forEach(e => {
         instance.handleKeyDown(e)
       })
 
@@ -222,7 +230,7 @@ describe('containers/SlidesContainer', () => {
       }, 200)
     })
 
-    it('doesn\'t navigate when PREV is below zero', () => {
+    it("doesn't navigate when PREV is below zero", () => {
       setTimeout(() => {
         instance.navigate('prev')
 
@@ -230,7 +238,7 @@ describe('containers/SlidesContainer', () => {
       }, 200)
     })
 
-    it('doesn\'t navigate when NEXT is out of bounds', () => {
+    it("doesn't navigate when NEXT is out of bounds", () => {
       setTimeout(() => {
         RouterUtils.getSlideIndexFromProps.mockReturnValue(3)
 
@@ -261,7 +269,7 @@ describe('containers/SlidesContainer', () => {
         { msRequestFullscreen: jest.fn() }
       ]
 
-      elems.forEach((elem) => {
+      elems.forEach(elem => {
         instance.enterFullScreen(elem)
       })
 

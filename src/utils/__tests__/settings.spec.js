@@ -13,12 +13,12 @@ describe('utils/settings', () => {
       expect(getSetting('theme')).toBe('minimal')
     })
 
-    it('returns default value when supplied and key doesn\'t exist', () => {
+    it("returns default value when supplied and key doesn't exist", () => {
       expect(getSetting('title', 'bar')).toBe('MockTitle')
       expect(getSetting('foo', 'bar')).toBe('bar')
     })
 
-    it('returns empty string when key doesn\'t exist', () => {
+    it("returns empty string when key doesn't exist", () => {
       expect(getSetting('foo')).toBe('')
     })
   })
@@ -30,7 +30,7 @@ describe('utils/settings', () => {
       expect(getProgressBar({ offset: 20 })).toBeNull()
     })
 
-    it('returns null if progressBar setting doesn\'t exist', () => {
+    it("returns null if progressBar setting doesn't exist", () => {
       delete Settings.progressBar
 
       expect(getProgressBar({ offset: 20 })).toBeNull()
@@ -39,8 +39,12 @@ describe('utils/settings', () => {
     it('returns progressBar component if progressBar setting is true', () => {
       Settings.progressBar = true
 
-      expect(getProgressBar({ offset: 20 })).toEqual(<ProgressBar offset={20} />)
-      expect(getProgressBar({ offset: -50 })).toEqual(<ProgressBar offset={-50} />)
+      expect(getProgressBar({ offset: 20 })).toEqual(
+        <ProgressBar offset={20} />
+      )
+      expect(getProgressBar({ offset: -50 })).toEqual(
+        <ProgressBar offset={-50} />
+      )
     })
   })
 })

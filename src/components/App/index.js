@@ -30,9 +30,7 @@ class App extends PureComponent {
         <Switch>
           <Route
             path='/:slide'
-            render={
-              () => <SlidesContainer navigateTo={this.navigateTo} />
-            }
+            render={() => <SlidesContainer navigateTo={this.navigateTo} />}
           />
           <Redirect exact from='/' to='/1' />
         </Switch>

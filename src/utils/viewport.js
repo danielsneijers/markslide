@@ -15,13 +15,17 @@ export const getElementSize = (element: HTMLElement): ElementDimensions => {
   }
 }
 
-export const dimensionsFitViewport = (elementDimensions: ElementDimensions): boolean => {
+export const dimensionsFitViewport = (
+  elementDimensions: ElementDimensions
+): boolean => {
   const { width, height } = elementDimensions
 
   return window.innerWidth >= width && window.innerHeight >= height
 }
 
-export const elementOutOfBoundFraction = (elementDimensions: ElementDimensions): ElementDimensions => {
+export const elementOutOfBoundFraction = (
+  elementDimensions: ElementDimensions
+): ElementDimensions => {
   const { width, height } = elementDimensions
 
   return {
@@ -36,5 +40,12 @@ export const scaleToFit = (outOfBoundFraction: ElementDimensions): number => {
   return width > height ? height : width
 }
 
-export const elementFitsViewport: Function = compose(dimensionsFitViewport, getElementSize)
-export const scaleElementToFit: Function = compose(scaleToFit, elementOutOfBoundFraction, getElementSize)
+export const elementFitsViewport: Function = compose(
+  dimensionsFitViewport,
+  getElementSize
+)
+export const scaleElementToFit: Function = compose(
+  scaleToFit,
+  elementOutOfBoundFraction,
+  getElementSize
+)

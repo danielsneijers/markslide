@@ -11,8 +11,9 @@ jest.mock('config/settings')
 describe('utils/renderer', () => {
   describe('highlightWithPrism', () => {
     it('returns text with indentation', () => {
-      const code = 'console.log(\'log\')' + '  console.log(\'with indent\')'
-      const parsedCode = "<span class='code-row'>console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'log'</span><span class=\"token punctuation\">)</span>  console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'with indent'</span><span class=\"token punctuation\">)</span></span>\n"
+      const code = "console.log('log')" + "  console.log('with indent')"
+      const parsedCode =
+        '<span class=\'code-row\'>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">\'log\'</span><span class="token punctuation">)</span>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">\'with indent\'</span><span class="token punctuation">)</span></span>\n'
 
       expect(highlightWithPrism(code, 'javascript')).toBe(parsedCode)
     })
@@ -21,9 +22,10 @@ describe('utils/renderer', () => {
   describe('wrapRowsInSpan', () => {
     it('wraps each newline in a span with highlighting classes', () => {
       const text = 'foo\nbar\nbaz'
-      const expectedResult = '<span class=\'code-row\'>foo</span>\n' +
-        '<span class=\'code-row\'>bar</span>\n' +
-        '<span class=\'code-row\'>baz</span>\n'
+      const expectedResult =
+        "<span class='code-row'>foo</span>\n" +
+        "<span class='code-row'>bar</span>\n" +
+        "<span class='code-row'>baz</span>\n"
 
       expect(wrapRowsInSpan(text)).toBe(expectedResult)
     })
@@ -58,12 +60,18 @@ describe('utils/renderer', () => {
       const copyBlack = 'I am <black>not white</black>'
       const copyBoth = 'I am <white>white</white> and <black>black</black>'
 
-      expect(enhanceTextWithColor(copyWhite)).toBe('I am <span style=color:#FFF>not black</span>')
-      expect(enhanceTextWithColor(copyBlack)).toBe('I am <span style=color:#000>not white</span>')
-      expect(enhanceTextWithColor(copyBoth)).toBe('I am <span style=color:#FFF>white</span> and <span style=color:#000>black</span>')
+      expect(enhanceTextWithColor(copyWhite)).toBe(
+        'I am <span style=color:#FFF>not black</span>'
+      )
+      expect(enhanceTextWithColor(copyBlack)).toBe(
+        'I am <span style=color:#000>not white</span>'
+      )
+      expect(enhanceTextWithColor(copyBoth)).toBe(
+        'I am <span style=color:#FFF>white</span> and <span style=color:#000>black</span>'
+      )
     })
 
-    it('doesn\'t parse when color is not in config', () => {
+    it("doesn't parse when color is not in config", () => {
       const copyUndefined = 'I do not <gold>exist</gold>'
 
       expect(enhanceTextWithColor(copyUndefined)).toBe(copyUndefined)

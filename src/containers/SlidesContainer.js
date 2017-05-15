@@ -12,16 +12,16 @@ import { getSlide } from 'utils/slide'
 
 type Props = {
   navigateTo: Function
-}
+};
 
 const NEXT = 'next'
 const PREV = 'prev'
 
 class SlidesContainer extends PureComponent {
-  props: Props
-  totalSlides: number
-  currentIndex: number
-  container: HTMLDivElement
+  props: Props;
+  totalSlides: number;
+  currentIndex: number;
+  container: HTMLDivElement;
 
   componentWillMount () {
     this.totalSlides = slidesCount(MarkdownSheets)
@@ -58,7 +58,7 @@ class SlidesContainer extends PureComponent {
   handleClick = (e: MouseEvent) => {
     e.preventDefault()
     this.navigate(NEXT)
-  }
+  };
 
   handleKeyDown = (e: KeyboardEvent) => {
     switch (e.keyCode) {
@@ -74,13 +74,15 @@ class SlidesContainer extends PureComponent {
         this.enterFullScreen(this.container)
         break
     }
-  }
+  };
 
   navigate = throttle((direction: string) => {
     direction === PREV
-      ? this.currentIndex > 1 && this.props.navigateTo(`/${this.currentIndex - 1}`)
-      : this.currentIndex < this.totalSlides && this.props.navigateTo(`/${this.currentIndex + 1}`)
-  }, 200)
+      ? this.currentIndex > 1 &&
+          this.props.navigateTo(`/${this.currentIndex - 1}`)
+      : this.currentIndex < this.totalSlides &&
+          this.props.navigateTo(`/${this.currentIndex + 1}`)
+  }, 200);
 
   enterFullScreen (elem: HTMLDivElement) {
     if (elem.requestFullscreen) elem.requestFullscreen()
@@ -94,7 +96,10 @@ class SlidesContainer extends PureComponent {
 
   render () {
     const parsedMarkdown = parse(MarkdownSheets)
-    const progressBarProps = { offset: (1 - this.currentIndex / this.totalSlides) * 100 }
+    const progressBarProps = {
+      offset: (1 - this.currentIndex / this.totalSlides) * 100
+    }
+    // prettier-ignore
     const { content = '', meta = {} } = parsedMarkdown[this.currentIndex - 1] || {}
     const slideProps = {
       index: this.currentIndex,
@@ -103,7 +108,11 @@ class SlidesContainer extends PureComponent {
     }
 
     return (
-      <div ref={(c) => { this.container = c }}>
+      <div
+        ref={c => {
+          this.container = c
+        }}
+      >
         {getProgressBar(progressBarProps)}
         {getSlide(content, slideProps)}
       </div>

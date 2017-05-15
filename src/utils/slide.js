@@ -16,7 +16,10 @@ export const getSlideType = (content: string): string => {
   return 'default'
 }
 
-export const getSlide = (content: string, elementProps: SlideProps): React$Element<any> => {
+export const getSlide = (
+  content: string,
+  elementProps: SlideProps
+): React$Element<any> => {
   const props = { ...elementProps, content }
 
   switch (getSlideType(content)) {

@@ -14,19 +14,20 @@ export function highlightWithPrism (code: string, lang: string): string {
     'right-trim': false
   })
 
-  return wrapRowsInSpan(highlight(
-    normalizedCode,
-    Prism.languages[lang]
-  ))
+  return wrapRowsInSpan(highlight(normalizedCode, Prism.languages[lang]))
 }
 
 export const wrapRowsInSpan = (text: string): string => {
-  return text.split(/\n/)
-    .map((line) => `<span class='code-row'>${line}</span>\n`)
+  return text
+    .split(/\n/)
+    .map(line => `<span class='code-row'>${line}</span>\n`)
     .join('')
 }
 
-export const enhanceTextWithHeaders = (text: string, level: number = 1): string => {
+export const enhanceTextWithHeaders = (
+  text: string,
+  level: number = 1
+): string => {
   return `<h${level}>${text}</h${level}>\n`
 }
 
@@ -44,8 +45,14 @@ export const enhanceTextWithColor = (text: string): string => {
   }, text)
 }
 
-export const enhanceHeaders: string = compose(enhanceTextWithColor, enhanceTextWithHeaders)
-export const enhanceParagraphs: string = compose(enhanceTextWithColor, enhanceTextWithParagraph)
+export const enhanceHeaders: string = compose(
+  enhanceTextWithColor,
+  enhanceTextWithHeaders
+)
+export const enhanceParagraphs: string = compose(
+  enhanceTextWithColor,
+  enhanceTextWithParagraph
+)
 
 const renderer = new Marked.Renderer()
 renderer.heading = enhanceHeaders
