@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import { KEY_CODES } from 'constants'
 import { getDisplayName } from 'utils/hoc'
 
-const fullScreenOption = WrappedComponent => {
-  class FullScreenOption extends Component {
+const fullScreenOption = (WrappedComponent: any) => {
+  class FullScreenOption extends Component<any, any, any> {
     componentDidMount () {
       window.addEventListener('keydown', this.handleKeyDown)
     }
@@ -15,7 +15,7 @@ const fullScreenOption = WrappedComponent => {
 
     handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === KEY_CODES.F) {
-        const root = document.getElementById('root')
+        const root: HTMLDivElement = window.document.getElementById('root')
 
         this.enterFullScreen(root)
       }

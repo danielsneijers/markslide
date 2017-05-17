@@ -12,9 +12,13 @@ type State = {
   }
 };
 
-const autoScaleContent = WrappedComponent => {
-  class AutoScaleContent extends Component {
-    props: { index: number };
+type Props = {
+  index: number
+};
+
+const autoScaleContent = (WrappedComponent: any) => {
+  class AutoScaleContent extends Component<any, Props, State> {
+    props: Props;
     initialState = { style: {} };
     state: State = this.initialState;
 

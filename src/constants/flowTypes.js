@@ -15,3 +15,8 @@ export type State = {
 export type Dispatch = {
   +[name: string]: Function
 };
+
+export type Action = {
+  type: string,
+  payload?: any
+};

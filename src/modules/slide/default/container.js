@@ -6,9 +6,9 @@ import type { State, Dispatch } from 'constants/flowTypes'
 import { getSlideIndexFromLocation } from 'modules/main/selectors'
 import { getCurrentSlide, getSlidesAmount } from '../selectors'
 import Slide from './component'
-import type { DefaultSlideProps, DefaultSlideMerge } from './types'
+import type { SlideProps, SlideMerge } from '../types'
 
-export const mapStateToProps = (state: State): DefaultSlideProps => {
+export const mapStateToProps = (state: State): SlideProps => {
   return {
     ...getCurrentSlide(state),
     index: getSlideIndexFromLocation(state),
@@ -23,9 +23,9 @@ export const mapDispatchToProps = (dispatch: Function): Dispatch => {
 }
 
 export const mergeProps = (
-  stateProps: DefaultSlideProps,
+  stateProps: SlideProps,
   dispatchProps: Dispatch
-): DefaultSlideMerge => {
+): SlideMerge => {
   const { index, totalSlides } = stateProps
 
   return {

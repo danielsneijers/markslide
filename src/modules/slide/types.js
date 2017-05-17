@@ -1,5 +1,5 @@
 // @flow
-export type DefaultSlideProps = {
+export type SlideProps = {
   +content: HTMLElement,
   +meta: {
     +class: string
@@ -8,7 +8,7 @@ export type DefaultSlideProps = {
   +totalSlides: number
 };
 
-export type DefaultSlideMerge = {
+export type SlideMerge = {
   +content: HTMLElement,
   +meta: {
     +class: string

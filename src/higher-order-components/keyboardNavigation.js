@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 import { KEY_CODES } from 'constants'
 import { getDisplayName } from 'utils/hoc'
 
-const keyboardNavigation = WrappedComponent => {
-  class KeyboardNavigation extends Component {
-    props: {
-      nextSlide: Function,
-      previousSlide: Function
-    };
+type Props = {
+  nextSlide: Function,
+  previousSlide: Function
+};
+
+const keyboardNavigation = (WrappedComponent: any) => {
+  class KeyboardNavigation extends Component<any, Props, any> {
+    props: Props;
 
     componentDidMount () {
       window.addEventListener('keydown', this.handleKeyDown)
