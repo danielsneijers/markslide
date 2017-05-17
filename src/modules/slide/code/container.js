@@ -2,12 +2,11 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { getCurrentSlide } from 'selectors/slide'
-import { getSlideIndexFromLocation } from 'selectors/routing'
-import SlideCode from 'components/SlideCode'
+import { getSlideIndexFromLocation } from 'modules/main/selectors'
+import { getCurrentSlide } from '../selectors'
+import CodeSlide from './component'
 
 export function mapStateToProps (state) {
-  console.log(state)
   return {
     ...getCurrentSlide(state),
     index: getSlideIndexFromLocation(state)
@@ -29,5 +28,5 @@ export function mergeProps (stateProps, dispatchProps) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
-  SlideCode
+  CodeSlide
 )

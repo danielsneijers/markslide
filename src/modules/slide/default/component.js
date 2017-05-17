@@ -3,8 +3,7 @@ import React from 'react'
 import { compose } from 'ramda'
 import classNames from 'classnames'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import fullScreenOption from 'higher-order-components/fullScreenOption'
-import autoScaleContent from 'higher-order-components/autoScaleContent'
+import { fullScreenOption, autoScaleContent } from 'higher-order-components'
 import CSS from './style.css'
 
 type Props = {

@@ -1,12 +1,9 @@
 // @flow
 import React from 'react'
 import CSS from './style.css'
+import type { ProgressBarProps } from './types'
 
-export type Props = {
-  offset: number
-}
-
-const ProgressBar = ({ offset }: Props) => {
+const ProgressBar = ({ offset }: ProgressBarProps): React$Element<any> => {
   const style = { transform: `translateX(-${offset}%)` }
 
   return <span className={CSS.progressBar} style={style} />

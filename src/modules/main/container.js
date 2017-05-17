@@ -2,12 +2,17 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import type { State, Dispatch } from 'constants/flowTypes'
 import { getSlideComponent } from 'utils/slide'
-import { getCurrentSlideContent, getSlidesAmount } from 'selectors/slide'
-import { getSlideIndexFromLocation } from 'selectors/routing'
-import App from 'components/App'
+import {
+  getCurrentSlideContent,
+  getSlidesAmount
+} from 'modules/slide/selectors'
+import { getSlideIndexFromLocation } from './selectors'
+import Main from './component'
+import type { MainProps, MainMerge } from './types'
 
-export const mapStateToProps = state => {
+export const mapStateToProps = (state: State): MainProps => {
   const slideContent = getCurrentSlideContent(state)
   const routeContainer = getSlideComponent(slideContent)
 
@@ -18,13 +23,16 @@ export const mapStateToProps = state => {
   }
 }
 
-export function mapDispatchToProps (dispatch) {
+export function mapDispatchToProps (dispatch: Function): Dispatch {
   const actions = { push }
 
   return bindActionCreators(actions, dispatch)
 }
 
-export function mergeProps (stateProps, dispatchProps) {
+export function mergeProps (
+  stateProps: MainProps,
+  dispatchProps: Dispatch
+): MainMerge {
   const { index, totalSlides } = stateProps
 
   return {
@@ -34,4 +42,4 @@ export function mergeProps (stateProps, dispatchProps) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Main)

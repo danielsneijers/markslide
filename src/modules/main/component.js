@@ -2,15 +2,15 @@
 import React, { PureComponent } from 'react'
 import { Switch, Route, Redirect } from 'react-router'
 import { applyTheme } from 'config/themes'
-import keyboardNavigation from 'higher-order-components/keyboardNavigation'
-import ProgressBarContainer from 'containers/ProgressBarContainer'
+import { keyboardNavigation } from 'higher-order-components'
+import { ProgressBarContainer } from 'modules/progressbar'
 import CSS from './style.css'
 
 type Props = {
   routeContainer: React$Element<any>
 };
 
-class App extends PureComponent {
+class Main extends PureComponent {
   props: Props;
 
   componentWillMount () {
@@ -30,4 +30,4 @@ class App extends PureComponent {
   }
 }
 
-export default keyboardNavigation(App)
+export default keyboardNavigation(Main)

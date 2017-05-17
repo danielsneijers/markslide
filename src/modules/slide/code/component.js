@@ -2,8 +2,7 @@
 import React from 'react'
 import { compose } from 'ramda'
 import classNames from 'classnames'
-import fullScreenOption from 'higher-order-components/fullScreenOption'
-import autoScaleContent from 'higher-order-components/autoScaleContent'
+import { fullScreenOption, autoScaleContent } from 'higher-order-components'
 import CSS from './style.css'
 
 type Props = {
@@ -16,7 +15,7 @@ type Props = {
   style: {}
 };
 
-const SlideCode = ({ content, index, meta, style, nextSlide }: Props) => {
+const CodeSlide = ({ content, index, meta, style, nextSlide }: Props) => {
   const slideClasses = classNames(
     CSS.slide,
     meta.class,
@@ -40,4 +39,4 @@ const SlideCode = ({ content, index, meta, style, nextSlide }: Props) => {
 
 const enhance = compose(fullScreenOption, autoScaleContent)
 
-export default enhance(SlideCode)
+export default enhance(CodeSlide)

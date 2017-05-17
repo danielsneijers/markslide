@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
-import SlideContainer from 'containers/SlideContainer'
-import SlideCodeContainer from 'containers/SlideCodeContainer'
+import { SlideContainer } from 'modules/slide/default'
+import { CodeSlideContainer } from 'modules/slide/code'
 
 export const getSlideType = (content: string = ''): string => {
   if (content.includes('<pre><code')) {
@@ -14,7 +14,7 @@ export const getSlideType = (content: string = ''): string => {
 export const getSlideComponent = (content: string): React$Element<any> => {
   switch (getSlideType(content)) {
     case 'code':
-      return <SlideCodeContainer />
+      return <CodeSlideContainer />
     default:
       return <SlideContainer />
   }

@@ -7,7 +7,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import MarkdownSlides from 'config/slides.md'
 import { parse } from 'utils/markdown'
 import { history, createMainStore } from './store'
-import App from './containers/AppContainer'
+import { MainContainer } from 'modules/main'
 
 const initialStoreState = {
   slide: {
@@ -30,10 +30,10 @@ const render = (Component, Router) => {
   ReactDOM.render(tree(Component, Router), document.getElementById('root'))
 }
 
-render(App, BrowserRouter)
+render(MainContainer, BrowserRouter)
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    render(App, BrowserRouter)
+  module.hot.accept('./modules/main/container', () => {
+    render(MainContainer, BrowserRouter)
   })
 }

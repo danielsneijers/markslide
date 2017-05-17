@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
-import slide from './slide'
+import slide from 'modules/slide/reducer'
 
 const rootReducer = combineReducers({
   slide,

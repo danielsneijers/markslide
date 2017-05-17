@@ -2,11 +2,13 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { getCurrentSlide, getSlidesAmount } from 'selectors/slide'
-import { getSlideIndexFromLocation } from 'selectors/routing'
-import Slide from 'components/Slide'
+import type { State, Dispatch } from 'constants/flowTypes'
+import { getSlideIndexFromLocation } from 'modules/main/selectors'
+import { getCurrentSlide, getSlidesAmount } from '../selectors'
+import Slide from './component'
+import type { DefaultSlideProps, DefaultSlideMerge } from './types'
 
-export function mapStateToProps (state) {
+export const mapStateToProps = (state: State): DefaultSlideProps => {
   return {
     ...getCurrentSlide(state),
     index: getSlideIndexFromLocation(state),
@@ -14,13 +16,16 @@ export function mapStateToProps (state) {
   }
 }
 
-export function mapDispatchToProps (dispatch) {
+export const mapDispatchToProps = (dispatch: Function): Dispatch => {
   const actions = { push }
 
   return bindActionCreators(actions, dispatch)
 }
 
-export function mergeProps (stateProps, dispatchProps) {
+export const mergeProps = (
+  stateProps: DefaultSlideProps,
+  dispatchProps: Dispatch
+): DefaultSlideMerge => {
   const { index, totalSlides } = stateProps
 
   return {

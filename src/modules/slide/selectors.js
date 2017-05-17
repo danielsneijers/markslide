@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { get } from 'lodash'
-import { getSlideIndexFromLocation } from 'selectors/routing'
+import { getSlideIndexFromLocation } from 'modules/main/selectors'
 
 export const getSlides = state => get(state, 'slide.all', [])
 export const getSlidesAmount = state => state.slide.all.length
