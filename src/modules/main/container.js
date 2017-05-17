@@ -13,13 +13,10 @@ import Main from './component'
 import type { MainProps, MainMerge } from './types'
 
 export const mapStateToProps = (state: State): MainProps => {
-  const slideContent = getCurrentSlideContent(state)
-  const routeContainer = getSlideComponent(slideContent)
-
   return {
-    routeContainer,
     index: getSlideIndexFromLocation(state),
-    totalSlides: getSlidesAmount(state)
+    totalSlides: getSlidesAmount(state),
+    slideContent: getCurrentSlideContent(state)
   }
 }
 
@@ -33,10 +30,11 @@ export function mergeProps (
   stateProps: MainProps,
   dispatchProps: Dispatch
 ): MainMerge {
-  const { index, totalSlides } = stateProps
+  const { index, totalSlides, slideContent } = stateProps
 
   return {
     ...stateProps,
+    renderRouteContainer: () => getSlideComponent(slideContent),
     nextSlide: () => index < totalSlides && dispatchProps.push(`/${index + 1}`),
     previousSlide: () => index > 1 && dispatchProps.push(`/${index - 1}`)
   }

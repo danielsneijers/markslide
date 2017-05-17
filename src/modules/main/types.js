@@ -1,14 +1,14 @@
 // @flow
 export type MainProps = {
-  +routeContainer: React$Element<any>,
   +index: number,
-  +totalSlides: number
+  +totalSlides: number,
+  +slideContent: string
 };
 
 export type MainMerge = {
-  +routeContainer: React$Element<any>,
   +index: number,
   +totalSlides: number,
+  +renderRouteContainer: () => React$Element<any>,
   +nextSlide: Function,
   +previousSlide: Function
 };
