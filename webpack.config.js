@@ -8,7 +8,7 @@ const { title } = require('./config/settings')
 
 const baseConfig = {
   context: resolve(__dirname, 'src'),
-  entry: [ './index.js' ],
+  entry: ['./index.js'],
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
@@ -49,9 +49,7 @@ const baseConfig = {
   },
   resolve: {
     extensions: ['.js'],
-    modules: [
-      'node_modules'
-    ]
+    modules: ['node_modules']
   }
 }
 
