@@ -1,87 +1,43 @@
 // @flow
-import React, { PureComponent } from 'react'
-import { debounce } from 'lodash'
+import React from 'react'
+import { compose } from 'ramda'
 import classNames from 'classnames'
-import { elementFitsViewport, scaleElementToFit } from 'utils/viewport'
+import fullScreenOption from 'higher-order-components/fullScreenOption'
+import autoScaleContent from 'higher-order-components/autoScaleContent'
 import CSS from './style.css'
 
 type Props = {
   index: number,
   content: string,
-  className?: string
+  meta: {
+    class?: string // eslint-disable-line react/no-unused-prop-types
+  },
+  nextSlide: Function,
+  style: {}
+};
+
+const SlideCode = ({ content, index, meta, style, nextSlide }: Props) => {
+  const slideClasses = classNames(
+    CSS.slide,
+    meta.class,
+    'code-slide',
+    `slide-${index}`
+  )
+
+  return (
+    <div className={slideClasses} key={`slide-${index}`}>
+      <div
+        id={`slide-${index}`}
+        key={Math.random()}
+        className={CSS.code}
+        style={{ opacity: 0, ...style }}
+        onClick={nextSlide}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    </div>
+  )
 }
 
-type State = {
-  style: {
-    transform?: string,
-    position?: string,
-    width?: string
-  }
-}
+const enhance = compose(fullScreenOption, autoScaleContent)
 
-class SlideCode extends PureComponent {
-  props: Props
-  state: State
-  container: HTMLDivElement
-
-  initialState = { style: {} }
-  state = this.initialState
-
-  componentDidMount () {
-    this.checkForScaling()
-
-    window.addEventListener('resize', this.checkForScaling)
-  }
-
-  componentWillReceiveProps () {
-    this.setState(this.initialState)
-    this.checkForScaling()
-  }
-
-  componentWillUnMount () {
-    this.checkForScaling.cancel()
-    window.removeEventListener('resize', this.checkForScaling)
-  }
-
-  checkForScaling: Function = debounce(() => {
-    const wrapper = this.container
-    const fitsViewport = elementFitsViewport(wrapper)
-    const scaleFraction = fitsViewport ? 1 : scaleElementToFit(wrapper)
-    const width = fitsViewport ? 'auto' : 90 / scaleFraction + '%'
-
-    const style = {
-      transform: `scale(${scaleFraction})`,
-      position: 'absolute',
-      opacity: 1,
-      width
-    }
-
-    this.setState({ style })
-  }, 100)
-
-  render (): React$Element<any> {
-    const { content, index, className } = this.props
-    const slideClasses = classNames(
-      CSS.slide,
-      className,
-      'code-slide',
-      `slide-${index}`
-    )
-
-    return (
-      <div className={slideClasses} key={`slide-${index}`}>
-        <div
-          key={Math.random()}
-          className={CSS.code}
-          ref={c => {
-            this.container = c
-          }}
-          style={{ opacity: 0, ...this.state.style }}
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-      </div>
-    )
-  }
-}
-
-export default SlideCode
+export default enhance(SlideCode)

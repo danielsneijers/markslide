@@ -1,37 +1,28 @@
 // @flow
 import React, { PureComponent } from 'react'
-import { Switch, Route, Redirect, withRouter } from 'react-router'
+import { Switch, Route, Redirect } from 'react-router'
 import { applyTheme } from 'config/themes'
-import SlidesContainer from 'containers/SlidesContainer'
+import keyboardNavigation from 'higher-order-components/keyboardNavigation'
+import ProgressBarContainer from 'containers/ProgressBarContainer'
 import CSS from './style.css'
 
 type Props = {
-  history: { push: Function }
-}
+  routeContainer: React$Element<any>
+};
 
 class App extends PureComponent {
-  props: Props
+  props: Props;
 
   componentWillMount () {
     applyTheme()
   }
 
-  /**
-   * Need to call the history.push() in a parent component of the
-   * slides container to trigger a rerender
-   */
-  navigateTo = (url: string) => {
-    this.props.history.push(url)
-  }
-
   render (): React$Element<any> {
     return (
       <div className={CSS.wrapper}>
+        <ProgressBarContainer />
         <Switch>
-          <Route
-            path='/:slide'
-            render={() => <SlidesContainer navigateTo={this.navigateTo} />}
-          />
+          <Route path='/:slide' render={() => this.props.routeContainer} />
           <Redirect exact from='/' to='/1' />
         </Switch>
       </div>
@@ -39,4 +30,4 @@ class App extends PureComponent {
   }
 }
 
-export default withRouter(App)
+export default keyboardNavigation(App)
