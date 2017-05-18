@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ProgressBar from 'components/ProgressBar'
+import ProgressBar from '../component'
 
-describe('components/ProgressBar', () => {
+describe('ProgressBar/component', () => {
   it('renders correctly', () => {
     const tree = shallow(<ProgressBar offset={-30} />)
 

@@ -29,7 +29,7 @@ describe('Main/container', () => {
     })
   })
 
-  describe('mapStateToProps', () => {
+  describe('mapDispatchToProps', () => {
     it('returns Main actions object', () => {
       expect(mapDispatchToProps(() => null)).toEqual(expectedDispatchProps)
     })

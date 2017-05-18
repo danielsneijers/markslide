@@ -7,8 +7,8 @@ import ProgressBar from './component'
 import type { ProgressBarProps } from './types'
 
 export function mapStateToProps (state: State): ProgressBarProps {
-  const currentIndex: number = getSlideIndexFromLocation(state)
-  const totalSlides: number = getSlidesAmount(state)
+  const currentIndex = getSlideIndexFromLocation(state)
+  const totalSlides = getSlidesAmount(state)
 
   return {
     offset: (1 - currentIndex / totalSlides) * 100
