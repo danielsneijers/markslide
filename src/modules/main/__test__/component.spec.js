@@ -6,7 +6,7 @@ import { Main } from '../component'
 let tree, instance
 const routeContainer = <h1>Hello Test!</h1>
 
-describe('components/Slide', () => {
+describe('Main/component', () => {
   afterAll(() => {
     jest.resetAllMocks()
   })
