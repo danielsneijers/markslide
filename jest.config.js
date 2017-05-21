@@ -1,5 +1,8 @@
 module.exports = {
-  coveragePathIgnorePatterns: ['<rootDir>/config/', '<rootDir>/src/modules/__fixtures__'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/config/',
+    '<rootDir>/src/modules/__fixtures__'
+  ],
   moduleFileExtensions: ['js'],
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
