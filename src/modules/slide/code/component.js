@@ -40,3 +40,4 @@ const CodeSlide = ({ content, index, meta, style, nextSlide }: Props) => {
 const enhance = compose(fullScreenOption, autoScaleContent)
 
 export default enhance(CodeSlide)
+export const component = CodeSlide

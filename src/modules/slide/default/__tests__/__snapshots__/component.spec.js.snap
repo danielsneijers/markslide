@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`slide/default/component renders correctly 1`] = `
+<CSSTransitionGroup
+  className="slide regular-slide slide-2"
+  component="div"
+  onClick={[Function]}
+  transitionAppear={true}
+  transitionAppearTimeout={500}
+  transitionEnter={true}
+  transitionEnterTimeout={500}
+  transitionLeave={true}
+  transitionLeaveTimeout={300}
+  transitionName="slide"
+>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class=\\"lang-javascript\\"><span class='code-row'>console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'foo'</span><span class=\\"token punctuation\\">)</span></span></code></pre>",
+      }
+    }
+    id="slide-2"
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  />
+</CSSTransitionGroup>
+`;

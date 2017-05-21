@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`slide/code/component renders correctly 1`] = `
+<div
+  className="slide code-slide slide-2"
+>
+  <div
+    className="code"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class=\\"lang-javascript\\"><span class='code-row'>console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'foo'</span><span class=\\"token punctuation\\">)</span></span></code></pre>",
+      }
+    }
+    id="slide-2"
+    onClick={[Function]}
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  />
+</div>
+`;

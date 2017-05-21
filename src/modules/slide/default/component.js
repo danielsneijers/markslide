@@ -48,3 +48,4 @@ const Slide = ({ content, index, nextSlide, meta, style }: Props) => {
 const enhance = compose(fullScreenOption, autoScaleContent)
 
 export default enhance(Slide)
+export const component = Slide
