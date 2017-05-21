@@ -1,14 +1,9 @@
 // @flow
 import React from 'react'
-import Slide from 'components/Slide'
-import SlideCode from 'components/SlideCode'
+import { SlideContainer } from 'modules/slide/default'
+import { CodeSlideContainer } from 'modules/slide/code'
 
-type SlideProps = {
-  index: number,
-  className?: string
-}
-
-export const getSlideType = (content: string): string => {
+export const getSlideType = (content: string = ''): string => {
   if (content.includes('<pre><code')) {
     return 'code'
   }
@@ -16,16 +11,11 @@ export const getSlideType = (content: string): string => {
   return 'default'
 }
 
-export const getSlide = (
-  content: string,
-  elementProps: SlideProps
-): React$Element<any> => {
-  const props = { ...elementProps, content }
-
+export const getSlideComponent = (content: string): React$Element<any> => {
   switch (getSlideType(content)) {
     case 'code':
-      return <SlideCode {...props} />
+      return <CodeSlideContainer />
     default:
-      return <Slide {...props} />
+      return <SlideContainer />
   }
 }

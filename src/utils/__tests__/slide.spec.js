@@ -1,7 +1,7 @@
 import React from 'react'
-import Slide from 'components/Slide'
-import SlideCode from 'components/SlideCode'
-import { getSlideType, getSlide } from '../slide'
+import SlideContainer from 'modules/slide/default/container'
+import CodeSlideContainer from 'modules/slide/code/container'
+import { getSlideType, getSlideComponent } from '../slide'
 
 describe('utils/slide', () => {
   const codeSlide = '<pre><code>console.log(`code`)</code></pre>'
@@ -9,25 +9,17 @@ describe('utils/slide', () => {
 
   describe('getSlideType', () => {
     it('returns slide type based on content', () => {
+      expect(getSlideType()).toBe('default')
       expect(getSlideType('')).toBe('default')
       expect(getSlideType(defaultSlide)).toBe('default')
       expect(getSlideType(codeSlide)).toBe('code')
     })
   })
 
-  describe('getSlide', () => {
-    const props = {
-      key: 'x',
-      onClick: () => null
-    }
-
+  describe('getSlideComponent', () => {
     it('returns slide component based on slide type', () => {
-      expect(getSlide(codeSlide, props)).toEqual(
-        <SlideCode {...props} content={codeSlide} />
-      )
-      expect(getSlide(defaultSlide, props)).toEqual(
-        <Slide {...props} content={defaultSlide} />
-      )
+      expect(getSlideComponent(codeSlide)).toEqual(<CodeSlideContainer />)
+      expect(getSlideComponent(defaultSlide)).toEqual(<SlideContainer />)
     })
   })
 })

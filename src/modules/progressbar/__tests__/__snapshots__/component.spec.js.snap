@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar/component renders correctly 1`] = `
+<span
+  className="progressBar"
+  style={
+    Object {
+      "transform": "translateX(--30%)",
+    }
+  }
+/>
+`;

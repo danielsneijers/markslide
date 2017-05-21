@@ -5,10 +5,10 @@ import { separateContentAndMetaData } from 'utils/metaData'
 import type { SlideWithMetaData } from 'utils/metaData'
 import renderer from 'utils/renderer'
 
-type ParsedSlideWithMetaData = {
+export type ParsedSlideWithMetaData = {
   content: HTMLElement,
   meta: {}
-}
+};
 
 export const splitSlides = (content: string): Array<string> =>
   content.split('\n---\n')
