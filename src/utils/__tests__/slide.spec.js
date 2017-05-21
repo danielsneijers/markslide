@@ -9,6 +9,7 @@ describe('utils/slide', () => {
 
   describe('getSlideType', () => {
     it('returns slide type based on content', () => {
+      expect(getSlideType()).toBe('default')
       expect(getSlideType('')).toBe('default')
       expect(getSlideType(defaultSlide)).toBe('default')
       expect(getSlideType(codeSlide)).toBe('code')
