@@ -14,13 +14,19 @@ export function highlightWithPrism (code: string, lang: string): string {
     'right-trim': false
   })
 
-  return wrapRowsInSpan(highlight(normalizedCode, Prism.languages[lang]))
+  return compose(wrapRowsInSpan, highlight)(
+    normalizedCode,
+    Prism.languages[lang]
+  )
 }
 
 export const wrapRowsInSpan = (text: string): string => {
   return text
     .split(/\n/)
-    .map(line => `<span class='code-row'>${line}</span>\n`)
+    .map(
+      (line: string, index: number) =>
+        `<span class='code-row row-${index + 1}'>${line}</span>\n`
+    )
     .join('')
 }
 
