@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router'
 import { applyTheme } from 'config/themes'
 import { keyboardNavigation } from 'higher-order-components'
@@ -10,7 +10,7 @@ type Props = {
   renderRouteContainer: () => React$Element<any>
 };
 
-export class Main extends PureComponent {
+export class Main extends Component {
   props: Props;
 
   componentWillMount () {

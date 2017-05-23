@@ -4,17 +4,16 @@ import { compose } from 'ramda'
 export type SlideWithMetaData = {
   content: string,
   meta: {}
-}
+};
 
 export type MetaData = {
-  class?: string,
-  loc?: string
-}
+  [string]: string
+};
 
 export type LocMetaData = {
-  class?: string,
+  [string]: string,
   loc?: Array<Array<number>>
-}
+};
 
 const META_REGEX = /{:.*}/g
 
@@ -31,7 +30,20 @@ export const convertMetaDataMatchesToMetaObject = (
     return { ...acc, [key.substring(2)]: value }
   }, {})
 
+export const parseLocFromMetaData = (metaData: MetaData): LocMetaData => {
+  if (!metaData.loc) {
+    return { ...metaData }
+  }
+
+  try {
+    return { ...metaData, loc: JSON.parse(`[${metaData.loc}]`) }
+  } catch (e) {
+    return {}
+  }
+}
+
 export const extractAndConvertMetaData: Function = compose(
+  parseLocFromMetaData,
   convertMetaDataMatchesToMetaObject,
   findMetaDataInContent
 )
@@ -49,17 +61,5 @@ export const separateContentAndMetaData = (
   return {
     content: contentWithOutMetaData(slide),
     meta: extractAndConvertMetaData(slide)
-  }
-}
-
-export const parseLocFromMetaData = (metaData: MetaData): LocMetaData => {
-  if (!metaData.loc) {
-    return {}
-  }
-
-  try {
-    return { loc: JSON.parse(`[${metaData.loc}]`) }
-  } catch (e) {
-    return {}
   }
 }

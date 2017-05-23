@@ -9,7 +9,8 @@ type Props = {
   index: number,
   content: string,
   meta: {
-    class?: string // eslint-disable-line react/no-unused-prop-types
+    [string]: string,
+    loc?: Array<Array<number>> // eslint-disable-line react/no-unused-prop-types
   },
   nextSlide: Function,
   style: {}
